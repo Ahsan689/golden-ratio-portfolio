@@ -9,6 +9,8 @@ import {
   userDark,
   web,
   webDark,
+  construction,
+  hammer
 } from "../svgImage";
 import ModalBox from "./ModalBox";
 import Carousel from "./Carousel";
@@ -58,11 +60,9 @@ const Service = ({ dark }) => {
                     data-color="dark"
                   >
                     <span>What I Do</span>
-                    <h3>My Services</h3>
+                    <h3>📐 Our Architectural Services</h3>
                     <p>
-                      We offer high quality products for competitive prices. Our
-                      main goal is customer satisfaction, which we obtain
-                      through market orientation of ongoing service and support.
+                    We offer high-quality design and planning services at competitive prices. Our main goal is client satisfaction, which we achieve through a holistic approach, innovative design, and ongoing project support.
                     </p>
                   </div>
                 </div>
@@ -82,15 +82,14 @@ const Service = ({ dark }) => {
                     />
                   </span>
                   <div className="title">
-                    <h3>Video Production</h3>
+                    <h3>Conceptual Design & Vision</h3>
                     <span className="price">
                       Starts from <span>$49</span>
                     </span>
                   </div>
                   <div className="text">
                     <p>
-                      Aali is a leading web design agency with an award-winning
-                      design team that creates innovative, effective websites{" "}
+                    The Foundation of Your Dream: Golden Ratio Design is a leading architectural design studio with a team of award-winning designers who craft innovative, effective, and sustainable conceptual designs that perfectly align with your vision and site context. We translate ideas into beautiful, buildable realities.
                     </p>
                   </div>
                   <a
@@ -207,15 +206,14 @@ const Service = ({ dark }) => {
                     />
                   </span>
                   <div className="title">
-                    <h3>Brand Identity</h3>
+                    <h3>✍️ Technical Drafting & Documentation</h3>
                     <span className="price">
                       Starts from <span>$59</span>
                     </span>
                   </div>
                   <div className="text">
                     <p>
-                      Aali is a leading web design agency with an award-winning
-                      design team that creates innovative, effective websites{" "}
+                    Precision in Every Detail: Golden Ratio Design delivers detailed and accurate construction drawings and documentation (CAD, BIM). Our meticulous approach ensures smooth permitting and execution, providing contractors with clear, effective blueprints for a successful build.
                     </p>
                   </div>
                   <a
@@ -291,15 +289,14 @@ const Service = ({ dark }) => {
                     />
                   </span>
                   <div className="title">
-                    <h3>Creative Writing</h3>
+                    <h3>✨ 3D Modeling & Visualization</h3>
                     <span className="price">
                       Starts from <span>$69</span>
                     </span>
                   </div>
                   <div className="text">
                     <p>
-                      Aali is a leading web design agency with an award-winning
-                      design team that creates innovative, effective websites{" "}
+                    See It Before You Build It: Golden Ratio Design brings your project to life with stunning, photo-realistic 3D renderings and immersive virtual tours. This crucial service helps you visualize materials, lighting, and scale, ensuring every detail is perfect before construction begins.
                     </p>
                   </div>
                   <a
@@ -362,7 +359,7 @@ const Service = ({ dark }) => {
               <li className="wow fadeInLeft" data-wow-duration="1s">
                 <div className="list_inner tilt-effect">
                   <span className="icon">
-                    {dark ? userDark : user}
+                    {dark ? construction : user}
                     <img
                       className="back"
                       src={`img/svg/service${dark ? "-dark" : ""}.png`}
@@ -370,15 +367,14 @@ const Service = ({ dark }) => {
                     />
                   </span>
                   <div className="title">
-                    <h3>Digital Marketing</h3>
+                    <h3>🛠️ Construction Administration & Oversight</h3>
                     <span className="price">
                       Starts from <span>$79</span>
                     </span>
                   </div>
                   <div className="text">
                     <p>
-                      Aali is a leading web design agency with an award-winning
-                      design team that creates innovative, effective websites{" "}
+                    Ensuring Design Integrity: We provide on-site services, including regular site visits, quality control checks, and contractor coordination. This oversight guarantees that the built structure precisely adheres to the design specifications and maintains the highest standards of craftsmanship.
                     </p>
                   </div>
                   <a

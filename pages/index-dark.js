@@ -23,7 +23,7 @@ const Index = () => {
     <Layout dark>
       <Home />
       <About />
-      <Skills />
+      {/* <Skills /> */}
       <Portfolio />
       <Service dark />
       <Resume />

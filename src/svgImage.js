@@ -612,6 +612,94 @@ const fb = (
       />
     </svg>
   ),
+  // Construction SVG - Outlined construction machine (crane), extra large, outlined style
+  construction = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="180"
+      height="180"
+      viewBox="0 0 96 96"
+      fill="none"
+      stroke="#fff"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="svg replaced-svg"
+    >
+      {/* Crane base */}
+      <rect x="8" y="78" width="80" height="8" rx="2" fill="none" stroke="#fff" strokeWidth="4.5" />
+      {/* Wheels */}
+      <circle cx="20" cy="86" r="4" fill="none" stroke="#fff" strokeWidth="4.5" />
+      <circle cx="76" cy="86" r="4" fill="none" stroke="#fff" strokeWidth="4.5" />
+      {/* Body */}
+      <rect x="12" y="62" width="20" height="16" rx="2" fill="none" stroke="#fff" strokeWidth="4.5" />
+      {/* Cabin */}
+      <rect x="18" y="66" width="8" height="7" rx="1" fill="none" stroke="#ea4343" strokeWidth="4.5" />
+      {/* Boom arm */}
+      <polyline points="22,62 56,26 84,62" fill="none" stroke="#fff" strokeWidth="4.5" />
+      {/* Boom cable */}
+      <line x1="56" y1="26" x2="56" y2="54" stroke="#ea4343" strokeWidth="4.5" />
+      {/* Hook */}
+      <path d="M56 54 v5 a4 4 0 0 0 8 0" fill="none" stroke="#fff" strokeWidth="4.5" />
+      {/* Support legs */}
+      <line x1="14" y1="78" x2="14" y2="72" stroke="#fff" strokeWidth="4.5" />
+      <line x1="28" y1="78" x2="28" y2="72" stroke="#fff" strokeWidth="4.5" />
+      <line x1="68" y1="78" x2="68" y2="72" stroke="#fff" strokeWidth="4.5" />
+      <line x1="82" y1="78" x2="82" y2="72" stroke="#fff" strokeWidth="4.5" />
+      {/* Detailing on boom */}
+      <line x1="29" y1="57" x2="56" y2="54" stroke="#fff" strokeDasharray="3 2" opacity="0.3" strokeWidth="4.5" />
+      <line x1="42" y1="41" x2="56" y2="54" stroke="#fff" strokeDasharray="3 2" opacity="0.3" strokeWidth="4.5" />
+    </svg>
+  ),
+  // Hammer SVG
+  hammer = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="60"
+      height="60"
+      viewBox="0 0 64 64"
+      className="svg replaced-svg"
+    >
+      <g>
+        <rect
+          x="32"
+          y="36"
+          width="6"
+          height="22"
+          rx="2"
+          transform="rotate(-45 35 47)"
+          fill="#8d5524"
+        />
+        <rect
+          x="29"
+          y="19"
+          width="6"
+          height="20"
+          rx="2"
+          transform="rotate(-45 32 29)"
+          fill="#ddd"
+        />
+        <rect
+          x="40"
+          y="5"
+          width="10"
+          height="18"
+          rx="4"
+          transform="rotate(45 45 14)"
+          fill="#555"
+        />
+        <rect
+          x="25"
+          y="27"
+          width="7"
+          height="8"
+          rx="2"
+          transform="rotate(-45 28.5 31)"
+          fill="#cccccc"
+        />
+      </g>
+    </svg>
+  ),
   userDark = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -671,4 +759,6 @@ export {
   webDark,
   userDark,
   penDark,
+  construction,
+  hammer,
 };

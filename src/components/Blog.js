@@ -10,25 +10,21 @@ const Blog = () => {
       <div className="aali_tm_news">
         <div className="container">
           
-          {/* <div
+          <div
             className="aali_tm_main_title"
             data-text-align="center"
             data-color="dark"
           >
-            <span>Latest Updates</span>
-            <h3>From My Blog</h3>
-            <p>
-              We offer high quality products for competitive prices. Our main
-              goal is customer satisfaction
-            </p>
-          </div> */}
+            <h3 style={{color:"#FEC101"}}>The Signature Collection</h3>
+           
+          </div>
           <div className="news_list">
             <ul>
               <li className="wow fadeInLeft" data-wow-duration="1s">
                 <div className="list_inner">
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/001.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/001.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/001.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/001.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -36,8 +32,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/002.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/002.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/002.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/002.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -45,8 +41,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/003.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/003.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/003.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/003.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -76,21 +72,21 @@ const Blog = () => {
                       <div className="news_popup_informations">
                         <div className="image">
                           <img src="
-                          DISPLAY_PICTURES/004.jpg" alt="aali image" />
+                          Pictures/DISPLAY_PICTURES/004.jpg" alt="aali image" />
                           <div className="main" data-img-url="
-                          DISPLAY_PICTURES/004.jpg" />
+                          Pictures/DISPLAY_PICTURES/004.jpg" />
                         </div>
                         <div className="image">
                           <img src="
-                          DISPLAY_PICTURES/005.jpg" alt="aali image" />
+                          Pictures/DISPLAY_PICTURES/005.jpg" alt="aali image" />
                           <div className="main" data-img-url="
-                          DISPLAY_PICTURES/005.jpg" />
+                          Pictures/DISPLAY_PICTURES/005.jpg" />
                         </div>
                         <div className="image">
                           <img src="
-                          DISPLAY_PICTURES/006.jpg" alt="aali image" />
+                          Pictures/DISPLAY_PICTURES/006.jpg" alt="aali image" />
                           <div className="main" data-img-url="
-                          DISPLAY_PICTURES/006.jpg" />
+                          Pictures/DISPLAY_PICTURES/006.jpg" />
                         </div>
                         <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="aali image" />
@@ -144,8 +140,8 @@ const Blog = () => {
               <li className="wow fadeInRight" data-wow-duration="1s">
                 <div className="list_inner">
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/004.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/004.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/004.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/004.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -153,8 +149,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/005.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/005.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/005.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/005.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -162,8 +158,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                    <img src="DISPLAY_PICTURES/006.jpg" alt="aali image" />
-                     <div className="main" data-img-url="DISPLAY_PICTURES/006.jpg" />
+                    <img src="Pictures/DISPLAY_PICTURES/006.jpg" alt="aali image" />
+                     <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/006.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -241,8 +237,8 @@ const Blog = () => {
               <li className="wow fadeInRight" data-wow-duration="1s">
                 <div className="list_inner">
                   <div className="image">
-                   <img src="DISPLAY_PICTURES/007.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/007.jpg" />
+                   <img src="Pictures/DISPLAY_PICTURES/007.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/007.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -250,8 +246,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                   <img src="DISPLAY_PICTURES/008.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/008.jpg" />
+                   <img src="Pictures/DISPLAY_PICTURES/008.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/008.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"
@@ -259,8 +255,8 @@ const Blog = () => {
                     />
                   </div>
                   <div className="image">
-                   <img src="DISPLAY_PICTURES/009.jpg" alt="aali image" />
-                    <div className="main" data-img-url="DISPLAY_PICTURES/009.jpg" />
+                   <img src="Pictures/DISPLAY_PICTURES/009.jpg" alt="aali image" />
+                    <div className="main" data-img-url="Pictures/DISPLAY_PICTURES/009.jpg" />
                     <a
                       className="aali_tm_full_link"
                       href="#"

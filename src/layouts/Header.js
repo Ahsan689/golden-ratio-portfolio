@@ -57,22 +57,22 @@ const Header = ({ dark }) => {
             <ul className="anchor_nav">
             <li
             >
-              <a href="#home"  style={{color:activeLink === "#home" ? "yellow" : "white"}}
+              <a href="#home"  style={{color:activeLink === "#home" ? "#FEC101" : "white"}}
               onClick={() => handleClick("#home")}><IoHomeOutline /></a>
             </li>
             <li
             >
-              <a href="#about"  style={{color:activeLink === "#about" ? "yellow" : "white"}}
+              <a href="#about"  style={{color:activeLink === "#about" ? "#FEC101" : "white"}}
               onClick={() => handleClick("#about")}><MdGroups /></a>
             </li>
             <li
             >
-              <a href="#portfolio" style={{color:activeLink === "#portfolio" ? "yellow" : "white"}}
+              <a href="#portfolio" style={{color:activeLink === "#portfolio" ? "#FEC101" : "white"}}
               onClick={() => handleClick("#portfolio")}><BsFolder2Open /></a>
             </li>
             <li
             >
-              <a href="#service"  style={{color:activeLink === "#service" ? "yellow" : "white"}}
+              <a href="#service"  style={{color:activeLink === "#service" ? "#FEC101" : "white"}}
               onClick={() => handleClick("#service")}><MdMiscellaneousServices /></a>
             </li>
               {/* <li>
@@ -83,7 +83,7 @@ const Header = ({ dark }) => {
               </li> */}
               <li
               >
-                <a href="#contact"  style={{color:activeLink === "#contact" ? "yellow" : "white"}}
+                <a href="#contact"  style={{color:activeLink === "#contact" ? "#FEC101" : "white"}}
                onClick={() => handleClick("#contact")}><LuContact/></a>
               </li>
             </ul>

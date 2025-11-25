@@ -63,6 +63,7 @@ const Contact = () => {
                   Friday
                 </p>
               </div> */}
+              
               <ul>
                 <li>
                   <div className="list_inner">
@@ -83,89 +84,50 @@ const Contact = () => {
                   </div>
                 </li>
               </ul>
-            </div>
 
-
-            <div className="aali_tm_section">
-      <div className="aali_tm_copyright">
-        <div className="container">
-          <div className="copyright_inner">
-            <div className="top">
-              <div className="logo">
-                {/* <img src="img/logo/logo.png" alt="aali image" /> */}
-              </div>
-              <div className="social">
-                <span>Connect</span>
-                <ul>
-                  <li>
-                    <a href="#">
-                      <i className="icon-facebook-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="icon-twitter-1" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="icon-instagram-3" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* <div className="bottom">
-              <div className="left">
-                <p>
-                  Designed with love by{" "}
-                  <a
-                    className="line_anim"
-                    href="https://themeforest.net/user/codeefly"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Codeefly
-                  </a>{" "}
-                  © {new Date().getFullYear()}
-                </p>
-              </div>
-              <div className="right">
-                <ul>
-                  <li>
-                    <a className="line_anim" href="#">
-                      Terms &amp; Condition
-                    </a>
-                  </li>
-                  <li>
-                    <a className="line_anim" href="#">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a className="line_anim" href="#">
-                      Support
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <span
-              className="border moving_effect"
-              data-direction="y"
-              data-reverse="yes"
-            /> */}
-          </div>
-        </div>
-        {/* <span className="square moving_effect" data-direction="x" /> */}
-      </div>
-    </div>
-            
-            {/* <div className="right wow fadeInRight" data-wow-duration="1s">
-              <div className="fields">
-
+              <div className="container" style={{ backgroundColor: "transparent", background: "transparent", padding: "0", margin: "0" }}>
+                <div className="aali_tm_copyright" style={{ backgroundColor: "transparent", background: "transparent", margin: "0", padding: "0" }}>
+               
                 
-                
+                  <div className="top" style={{ margin: "0", padding: "0" }}>
+                  
+                  <div className="social" style={{ display: "flex", alignItems: "center", margin: "0", padding: "40px 0px 0px 0px" }}>
+                    <span>Connect</span>
+                    <ul style={{ display: "flex", gap: "10px", margin: "0", padding: "0", listStyle: "none" }}>
+                      <li>
+                        <a href="#">
+                          <i className="icon-facebook-1" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="icon-twitter-1" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="icon-instagram-3" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                  {/* <span
+                    className="border moving_effect"
+                    data-direction="y"
+                    data-reverse="yes"
+                  /> */}
+                </div>
+              </div>
+            </div>
+
+
+            <div className="aali_tm_section" style={{ backgroundColor: "#333232", padding: "40px", borderRadius: "8px", width: "100%", maxWidth: "100%", marginBottom: "20px"}}>
+              
+            <div className="aali_tm_copyright" style={{ width: "100%", maxWidth: "100%", padding: "0" }}>
+            <div className="right wow fadeInRight" data-wow-duration="1s" style={{ width: "100%", maxWidth: "100%" }}>
+              <div className="fields" style={{ width: "100%", maxWidth: "100%", padding: "0" }}>
+
                 <form
                   action="/"
                   method="post"
@@ -184,9 +146,9 @@ const Contact = () => {
                         : "Your message has been received, We will contact you soon."}
                     </span>
                   </div>
-                  <div className="input_list">
-                    <ul>
-                      <li>
+                  <div className="input_list" style={{ width: "100%" }}>
+                    <ul style={{ width: "100%", display: "flex", flexDirection: "column", gap: "15px", margin: "0", padding: "0" }}>
+                      <li style={{ width: "100%", listStyle: "none", margin: "0", padding: "0" }}>
                         <input
                           id="name"
                           type="text"
@@ -194,9 +156,10 @@ const Contact = () => {
                           onChange={(e) => onChange(e)}
                           value={name}
                           placeholder="Your Name"
+                          style={{ width: "100%", boxSizing: "border-box", padding: "15px 20px", fontSize: "16px", border: "none" }}
                         />
                       </li>
-                      <li>
+                      <li style={{ width: "100%", listStyle: "none", margin: "0", padding: "0" }}>
                         <input
                           id="email"
                           type="text"
@@ -204,17 +167,19 @@ const Contact = () => {
                           name="email"
                           onChange={(e) => onChange(e)}
                           value={email}
+                          style={{ width: "100%", boxSizing: "border-box", padding: "15px 20px", fontSize: "16px", border: "none" }}
                         />
                       </li>
                     </ul>
                   </div>
-                  <div className="message_area">
+                  <div className="message_area" style={{ width: "100%", margin: "0", padding: "20px 0 " }}>
                     <textarea
                       id="message"
                       placeholder="Message"
                       name="message"
                       onChange={(e) => onChange(e)}
                       value={message}
+                      style={{ width: "100%", boxSizing: "border-box", padding: "15px 20px", fontSize: "16px", minHeight: "200px", border: "none", display: "block" }}
                     />
                   </div>
                   <div className="aali_tm_button">
@@ -224,7 +189,11 @@ const Contact = () => {
                   </div>
                 </form>
               </div>
-            </div> */}
+            </div>
+            </div>
+            </div>
+            
+           
           </div>
         </div>
         {/* <span
