@@ -267,17 +267,18 @@ const Portfolio = () => {
                     {/* <div className="image">
                     
                     </div> */}
-                  <div style={{ position: 'relative', width: '100%', height: '350px' }}>
-                    <img src="Pictures/SAUDI_ARABIA_LIVING_ROOM_RENDERS/003.png" alt="aali image" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius:"5%" }} />
+                  <div className="portfolio_main_photos" >
+                    <img src="Pictures/SAUDI_ARABIA_LIVING_ROOM_RENDERS/003.png" alt="aali image" className="portfolio_main_photo_size" />
                     {/* <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(211, 211, 211, 0.5)' }} /> */}
                   </div>
                     {/* <img src="SAUDI_ARABIA_LIVING_ROOM_RENDERS/New_folder/003.png" width={200} height={200}/> */}
 
-                    <div className="overlay" />
-                    <div className="details">
-                      <h3>Residential</h3>
-                      <h6>Saudi Arabia Residential</h6>
-                    
+                    <div className="overlay" >
+                      <div className="details">
+                        <h3>Residential</h3>
+                        <h6>Saudi Arabia Residential</h6>
+                      
+                      </div>
                     </div>
                     <a
                       className="aali_tm_full_link"
@@ -475,8 +476,8 @@ const Portfolio = () => {
                         loop
                       />
                     </div> */}
-                  <div style={{ position: 'relative', width: '100%', height: '350px' }}>
-                    <img src="Pictures/CONF ROOM SGS RENDERS/09.jpg" alt="aali image" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius:"5%" }}  />
+                  <div className="portfolio_main_photos" >
+                    <img src="Pictures/CONF ROOM SGS RENDERS/09.jpg" alt="aali image" className="portfolio_main_photo_size"   />
                     {/* <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(211, 211, 211, 0.5)' }} /> */}
                   </div>
                     <div className="overlay" />
@@ -629,9 +630,9 @@ const Portfolio = () => {
                       />
 
                     </div> */}
-                    <div style={{ position: 'relative', width: '100%', height: '350px' }}>
+                <div className="portfolio_main_photos">
 
-                    <img src="Pictures/AMIN LAKLHANI KITCHEN 1 RENDERS/002.jpg" alt="aali image" style={{width:"100%", height:"350px",objectFit: 'cover', borderRadius:"5%" }} />
+                    <img src="Pictures/AMIN LAKLHANI KITCHEN 1 RENDERS/002.jpg" alt="aali image" className="portfolio_main_photo_size"  />
                     </div>
                     <div className="overlay" />
                     <div className="details">

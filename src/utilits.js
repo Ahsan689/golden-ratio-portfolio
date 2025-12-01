@@ -27,59 +27,136 @@ export const wowJsAnimation = () => {
   new WOW.WOW().init();
 };
 
+// export const customCursor = () => {
+//   var myCursor = document.querySelectorAll(".mouse-cursor"),
+//     hamburger = document.querySelector(".hamburger"),
+//     kura_tm_topbar = document.querySelector(".kura_tm_topbar "),
+//     pointer = document.querySelector(".cursor-pointer"),
+//     e = document.querySelector(".cursor-inner"),
+//     t = document.querySelector(".cursor-outer");
+
+//   function mouseEvent(element) {
+//     element.addEventListener("mouseenter", function () {
+//       e.classList.add("cursor-hover"), t.classList.add("cursor-hover");
+//     });
+//     element.addEventListener("mouseleave", function () {
+//       e.classList.remove("cursor-hover"), t.classList.remove("cursor-hover");
+//     });
+//   }
+//   if (myCursor.length) {
+//     if (document.body) {
+//       let n,
+//         i = 0,
+//         o = !1;
+//       (window.onmousemove = function (s) {
+//         // console.log(document.querySelector(this));
+//         o ||
+//           (t.style.transform =
+//             "translate(" + s.clientX + "px, " + s.clientY + "px)"),
+//           (e.style.transform =
+//             "translate(" + s.clientX + "px, " + s.clientY + "px)"),
+//           (n = s.clientY),
+//           (i = s.clientX);
+//       }),
+//         document.body.addEventListener(
+//           "mouseenter",
+//           // "a,.kura_tm_topbar .trigger, .cursor-pointer",
+//           function () {
+//             let a = document.querySelectorAll("a");
+//             e.classList.add("cursor-inner"), t.classList.add("cursor-outer");
+
+//             for (let i = 0; i < a.length; i++) {
+//               const element = a[i];
+//               mouseEvent(element);
+//             }
+
+//             hamburger && mouseEvent(hamburger);
+//             kura_tm_topbar && mouseEvent(kura_tm_topbar);
+//             pointer && mouseEvent(pointer);
+//           }
+//         ),
+//         (e.style.visibility = "visible"),
+//         (t.style.visibility = "visible");
+//     }
+//   }
+// };
+
 export const customCursor = () => {
-  var myCursor = document.querySelectorAll(".mouse-cursor"),
+  const myCursor = document.querySelectorAll(".mouse-cursor"),
     hamburger = document.querySelector(".hamburger"),
-    kura_tm_topbar = document.querySelector(".kura_tm_topbar "),
+    kura_tm_topbar = document.querySelector(".kura_tm_topbar"),
     pointer = document.querySelector(".cursor-pointer"),
     e = document.querySelector(".cursor-inner"),
     t = document.querySelector(".cursor-outer");
 
+  if (!myCursor.length || !e || !t) return;
+
+  const enableCursor = () => {
+    e.style.display = "block";
+    t.style.display = "block";
+    document.body.style.cursor = "none";
+  };
+
+  const disableCursor = () => {
+    e.style.display = "none";
+    t.style.display = "none";
+    document.body.style.cursor = "default";
+  };
+
+  const shouldEnableCursor = () => {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const isLargeScreen = window.innerWidth >= 1024;
+    return !isTouch || isLargeScreen;
+  };
+
   function mouseEvent(element) {
-    element.addEventListener("mouseenter", function () {
-      e.classList.add("cursor-hover"), t.classList.add("cursor-hover");
+    element.addEventListener("mouseenter", () => {
+      e.classList.add("cursor-hover");
+      t.classList.add("cursor-hover");
     });
-    element.addEventListener("mouseleave", function () {
-      e.classList.remove("cursor-hover"), t.classList.remove("cursor-hover");
+
+    element.addEventListener("mouseleave", () => {
+      e.classList.remove("cursor-hover");
+      t.classList.remove("cursor-hover");
     });
   }
-  if (myCursor.length) {
-    if (document.body) {
-      let n,
-        i = 0,
-        o = !1;
-      (window.onmousemove = function (s) {
-        // console.log(document.querySelector(this));
-        o ||
-          (t.style.transform =
-            "translate(" + s.clientX + "px, " + s.clientY + "px)"),
-          (e.style.transform =
-            "translate(" + s.clientX + "px, " + s.clientY + "px)"),
-          (n = s.clientY),
-          (i = s.clientX);
-      }),
-        document.body.addEventListener(
-          "mouseenter",
-          // "a,.kura_tm_topbar .trigger, .cursor-pointer",
-          function () {
-            let a = document.querySelectorAll("a");
-            e.classList.add("cursor-inner"), t.classList.add("cursor-outer");
 
-            for (let i = 0; i < a.length; i++) {
-              const element = a[i];
-              mouseEvent(element);
-            }
-
-            hamburger && mouseEvent(hamburger);
-            kura_tm_topbar && mouseEvent(kura_tm_topbar);
-            pointer && mouseEvent(pointer);
-          }
-        ),
-        (e.style.visibility = "visible"),
-        (t.style.visibility = "visible");
+  const initCursor = () => {
+    if (!shouldEnableCursor()) {
+      disableCursor();
+      return;
     }
-  }
+
+    enableCursor();
+
+    let mouseX = 0,
+      mouseY = 0;
+
+    window.onmousemove = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+
+      t.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      e.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    };
+
+    const links = document.querySelectorAll("a");
+    links.forEach(mouseEvent);
+    hamburger && mouseEvent(hamburger);
+    kura_tm_topbar && mouseEvent(kura_tm_topbar);
+    pointer && mouseEvent(pointer);
+
+    e.style.visibility = "visible";
+    t.style.visibility = "visible";
+  };
+
+  // Init cursor
+  initCursor();
+
+  // Recalculate on resize (for iPad orientation change)
+  window.addEventListener("resize", initCursor);
 };
+
 
 export const preloader = () => {
   aali_tm_preloader();

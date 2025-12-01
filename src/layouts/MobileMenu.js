@@ -8,7 +8,7 @@ const MobileMenu = () => {
         <div className="mobile_in">
           <div className="logo">
             <a href="#">
-              <img src="img/logo/dark.png" alt="aali image" />
+              <img src="img/logo/G_3.png" alt="aali image" />
             </a>
           </div>
           <div className="trigger">

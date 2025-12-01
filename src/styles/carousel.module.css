@@ -1,0 +1,213 @@
+.carousel-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+ .carousel-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  perspective: 1000px;
+  position: relative;
+  /* Keep height proportional to width using padding-bottom (16:9). This makes height fit width. */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  margin-bottom: 60px;
+} .carousel-slide {
+  position: absolute;
+  top: 50%;
+  width: 28%; /* base width for side slides */
+  aspect-ratio: 16 / 9; /* maintain consistent aspect ratio */
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.45s cubic-bezier(.2,.8,.2,1);
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transform: translateY(-50%); /* vertically center slides */
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Active slide - center, larger */
+.slideActive {
+  z-index: 30;
+  width: 90%; /* increased center image width */
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.06) translateZ(0);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+}
+
+/* Side slides - smaller, semi-transparent */
+.side {
+  z-index: 8;
+  opacity: 0.78; /* slightly more visible */
+}
+
+/* Left and right side classes - applied from JS so we can position reliably */
+.side-left {
+  left: 6%;
+  transform: translate(-6%, -50%) scale(0.94) rotateY(12deg);
+}
+
+.side-right {
+  right: 6%;
+  transform: translate(6%, -50%) scale(0.94) rotateY(-12deg);
+}
+
+/* Hidden slides */
+.hidden {
+  opacity: 0;
+  z-index: 1;
+}
+
+.slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+}
+
+.slide-button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid white;
+  padding: 10px 25px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+  display: none; /* hide DISCOVER button */
+}
+
+.slide-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.carousel-nav {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  color: #ccc;
+  transform: scale(1.2);
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 6px; /* reduced gap between dots */
+  justify-content: center;
+}
+
+.indicator {
+  width: 5px;   /* smaller dots by default */
+  height: 5px;
+  border-radius: 50%;
+  background-color: #cfcfcf;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indicatorActive {
+  width: 10px;  /* active dot slightly larger */
+  height: 6px;
+  border-radius: 6px;
+  background-color: #333;
+}
+
+.indicator:hover {
+  background-color: #999;
+}
+
+.carousel-footer {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: none; /* hide VIEW ALL DESTINATIONS */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  /* Tablet: slightly taller aspect to give more vertical room */
+  .carousel-wrapper {
+    padding-bottom: 62.5%;
+  }
+
+  .carousel-slide {
+    width: 42%;
+    aspect-ratio: 16/9;
+  }
+  .slideActive {
+    width: 75%;
+  }
+
+  .carousel-nav {
+    font-size: 30px;
+  }
+
+  .carousel-controls {
+    gap: 20px;
+  }
+} 
+
+@media (max-width: 480px) {
+  /* Mobile: compact carousel with smaller image size and reduced height */
+  .carousel-container {
+    padding: 24px 12px;
+  }
+
+  .carousel-wrapper {
+    padding-bottom: 30%; /* shorter height on mobile */
+    max-width: 240px;
+  }
+
+  .carousel-slide {
+    width: 30%;
+    aspect-ratio: 4/5;
+  }
+  .slideActive {
+    width: 65%;
+  }
+
+  .carousel-nav {
+    font-size: 16px;
+  }
+
+  .carousel-controls {
+    gap: 8px;
+  }
+}

@@ -37,7 +37,7 @@ const Header = ({ dark }) => {
           {dark ? (
             <div className="logo">
               <a href="#">
-                <img src="img/logo/logo.png" alt="" />
+                <img src="img/logo/G_3.png" alt="" />
               </a>
             </div>
           ) : (

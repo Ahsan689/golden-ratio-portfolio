@@ -8,7 +8,7 @@ const About = () => {
           <div className="left">
             <div className="image">
               <img src="img/thumbs/45-49.jpg" alt="aali image" />
-              <div className="main" data-img-url="img/about/1.jpg" />
+              <div className="main" data-img-url="img/thumbs/SUFIYAN_PNG.png" />
               <span
                 className="square moving_effect"
                 data-direction="y"
@@ -25,14 +25,13 @@ const About = () => {
           </div>
           <div className="center">
             <div className="title wow fadeInUp" data-wow-duration="1s">
-              <span className="small">About Me</span>
+              <span className="small">About Us</span>
               <h3>
-                {`I'm`} <span>Aali</span>
+                {`Golden`} <span> Ratio</span>
               </h3>
               <h3>
-                Web <span>Designer</span>
+                 <span>Design</span>
               </h3>
-              <span className="subtitle">Based in London,UK</span>
             </div>
             <div
               className="text wow fadeInUp"
@@ -51,15 +50,13 @@ const About = () => {
               data-wow-duration="1.5s"
               data-wow-delay="0.2s"
             >
-              <a href="img/cv/1.jpg" download>
-                <span>Download CV {download}</span>
-              </a>
+             
             </div>
           </div>
           <div className="right">
             <div className="image">
               <img src="img/thumbs/41-61.jpg" alt="aali image" />
-              <div className="main" data-img-url="img/about/2.jpg" />
+              <div className="main" data-img-url="img/thumbs/ushna_png.png" />
               <div
                 className="square moving_effect"
                 data-direction="x"
