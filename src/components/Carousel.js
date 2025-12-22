@@ -3,10 +3,23 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/carousel.module.css';
 
-const Carousel = ({images}) => {
+const Carousel = ({images, autoPlayInterval = 3000}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  // --- AUTO-RUN LOGIC START ---
+  useEffect(() => {
+    // Create the interval
+    const timer = setInterval(() => {
+      handleNextClick();
+    }, autoPlayInterval);
+
+    // Clean up the interval when the component unmounts 
+    // or before the effect runs again due to currentIndex changing
+    return () => clearInterval(timer);
+  }, [currentIndex]); // Re-setting on index change ensures the full delay after a manual click
+  // --- AUTO-RUN LOGIC END ---
 
   const handleIndicatorClick = (index) => {
     setCurrentIndex(index);

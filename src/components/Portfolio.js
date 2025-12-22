@@ -94,6 +94,139 @@ const MD_ROOM_SGS_RENDERS = [
   "Pictures/MD ROOM SGS RENDERS/09.png",
 ];
 
+const COMMERCIAL_CALIFORNIA_PIZZA = [
+  "Pictures/Commercial/CALIFORNIA_PIZZA/001.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/002.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/003.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/004.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-14-02-41_Enscape scene 2.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-14-22-43_Enscape scene 1.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-21-04-54_Enscape scene 33.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-21-06-32_Enscape scene 32.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-21-09-29_Enscape scene 26.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-21-11-23_Enscape scene 25.jpg",
+  "Pictures/Commercial/CALIFORNIA_PIZZA/Enscape_2025-09-06-21-17-15_Enscape scene 31.jpg",
+]
+
+const COMMERCIAL_CLASSROOM = [
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 1.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 3.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 4.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 5.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 7.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 8.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 9.jpg",
+  "Pictures/Commercial/CLASSROOM/CLASSROOM VIEW 11.jpg",
+]
+
+const COMMERCIAL_HARIS_OFFICE = [
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-12-12-18-31_Enscape scene 9.jpg",
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-14-18-05-14_Enscape scene 23.jpg",
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-14-18-14-16_Enscape scene 24.jpg",
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-14-18-19-10_Enscape scene 26.jpg",
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-14-18-22-51_Enscape scene 33.jpg",
+  "Pictures/Commercial/HARIS_OFFICE/Enscape_2025-11-14-18-26-49_Enscape scene 34.jpg",
+
+]
+
+const INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN = [
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/DRAWING/Enscape_2025-10-07-01-07-04_Enscape scene 6.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/DRAWING/Enscape_2025-10-07-01-09-42_Enscape scene 1.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/DRAWING/Enscape_2025-10-07-01-17-02_Enscape scene 7.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/DRAWING/Enscape_2025-10-07-01-19-28_Enscape scene 8.jpg",
+]
+
+
+const INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING = [
+
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/KITCHEN & LIVING/Enscape_2025-11-22-17-30-48_Enscape scene 15.jpg",
+"Pictures/Interior/240 SQ YDS AHMED YAR KHAN/KITCHEN & LIVING/Enscape_2025-11-22-17-41-15_Enscape scene 16.jpg",
+"Pictures/Interior/240 SQ YDS AHMED YAR KHAN/KITCHEN & LIVING/Enscape_2025-11-22-18-44-54_Enscape scene 18.jpg",
+"Pictures/Interior/240 SQ YDS AHMED YAR KHAN/KITCHEN & LIVING/Enscape_2025-11-23-16-02-52_PROFILE VIEW - 2.jpg",
+"Pictures/Interior/240 SQ YDS AHMED YAR KHAN/KITCHEN & LIVING/Enscape_2025-11-23-16-20-01_Enscape scene 20.jpg"
+]
+
+const INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED = [
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-16-18-41-47_Enscape scene 4.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-17-00-44-39_Enscape scene 25.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-17-00-48-32_Enscape scene 26.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-18-14-30-27_Enscape scene 34.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-25-12-30-16_Enscape scene 21.jpg",
+  "Pictures/Interior/240 SQ YDS AHMED YAR KHAN/MASTERBED/Enscape_2025-10-25-12-34-07_Enscape scene 28.jpg"
+]
+
+const INTERIOR_ALFIE_LIVING_KITCHEN = [
+  
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-15-45-29_Enscape scene 10.jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-03-40_Enscape scene 11 (1).jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-03-40_Enscape scene 11.jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-05-35_Enscape scene 12 (1).jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-05-35_Enscape scene 12 (2).jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-05-35_Enscape scene 12 (3).jpg",
+  "Pictures/Interior/ALFIE LIVING & KITCHEN/Enscape_2025-08-21-16-05-35_Enscape scene 12.jpg"
+]
+
+
+const RESIDENTIAL_1400_SQ_YDS = [
+  "Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-22-30-57_EXTERIOR WITHOUT BOUNDARY.jpg",
+"Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-22-32-43_EXTERIOR WITHOUT BOUNDARY 2.jpg",
+"Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-22-34-41_WIDE ANGLE 1.jpg",
+"Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-22-36-33_WIDE ANGLE 2.jpg",
+"Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-22-47-05_SQUARE VIEW 4 NEW.jpg",
+"Pictures/Residential/1400 SQ YDS/Enscape_2025-04-08-23-17-29_FRONT VIEW NEW.jpg"
+]
+
+const RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES = [
+  "Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742326753143.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742326943402.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327023543.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327107676.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327177855 (1).jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327300585.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327365149 (1).jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327503808.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/1742327632801.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/SAVE_20250319_240716.jpg",
+"Pictures/Residential/2000 SQ YDS/INDOOR BAR B Q & GAMES/SAVE_20250319_240722.jpg"
+]
+
+const RESIDENTIAL_2000_SQ_YDS_MASTERPLAN = [
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-12-22-39-51_Enscape scene 40.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-12-22-41-37_Enscape scene 41.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-12-22-51-06_Enscape scene 42.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-12-22-52-51_Enscape scene 39.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-09-33_Enscape scene 48.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-12-41_Enscape scene 49.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-18-00_Enscape scene 50.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-26-23_Enscape scene 51.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-34-05_Enscape scene 52.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-13-17-41-36_Enscape scene 52.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-14-09-59-29_Enscape scene 55.jpg",
+  "Pictures/Residential/2000 SQ YDS/MASTERPLAN/Enscape_2025-10-14-10-02-26_Enscape scene 56.jpg"
+]
+
+const RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH = [
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/0010.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/0011.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/0012.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/002.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/003.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/004.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/005.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/006.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/007.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/008.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/009.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/13.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/14.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/15.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/16.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/17.jpg",
+  "Pictures/Residential/2000 SQ YDS/PARENTS BATH/18.jpg"
+]
+
+
+
 const Portfolio = () => {
 
   const router = useRouter()
@@ -292,7 +425,7 @@ const Portfolio = () => {
                 <div className={modal === 1 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
-                        <Carousel images={images} />
+                        <Carousel images={RESIDENTIAL_1400_SQ_YDS} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -301,12 +434,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>RESIDENTIAL 1400 SQ YDS</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -315,10 +448,10 @@ const Portfolio = () => {
                             help grow your business and achieve your goals.
                           </p>
                         
-                        </div>
+                        </div> */}
                       </div>
                       <div className="service_popup_informations">
-                        <Carousel images={ADEEL_KITCHEN} />
+                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -327,12 +460,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>RESIDENTIAL 2000 SQ YDS INDOOR BAR BQ GAMES</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -341,10 +474,10 @@ const Portfolio = () => {
                             help grow your business and achieve your goals.
                           </p>
                         
-                        </div>
+                        </div> */}
                       </div>
                       <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DINING_RENDERS} />
+                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -353,12 +486,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>RESIDENTIAL 2000 SQ YDS PARENTS BATH</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -376,10 +509,10 @@ const Portfolio = () => {
                             bottom line.
                           </p>
                       
-                        </div>
+                        </div> */}
                       </div>
                       <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DRAWING_RENDERS} />
+                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_MASTERPLAN} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -388,12 +521,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>RESIDENTIAL 2000 SQ YDS MASTERPLAN</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -411,7 +544,7 @@ const Portfolio = () => {
                             bottom line.
                           </p>
                       
-                        </div>
+                        </div> */}
                       </div>
                     </ModalBox>
                   </div>
@@ -495,7 +628,7 @@ const Portfolio = () => {
                 <div className={modal === 2 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKLHANI_KITCHEN_1_RENDERS} />
+                        <Carousel images={INTERIOR_ALFIE_LIVING_KITCHEN} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -504,50 +637,85 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>INTERIOR ALFIE LIVING KITCHEN</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
                         <div className="descriptions">
-                          <p>
+                          {/* <p>
+                            Aali is a leading web design agency with an
+                            award-winning design team that creates innovative,
+                            effective websites that capture your brand, improve
+                            your conversion rates, and maximize your revenue to
+                            help grow your business and achieve your goals.
+                          </p> */}
+                        
+                        </div>
+                      </div>
+                      <div className="service_popup_informations">
+                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN} />
+                        {/* <div className="image">
+                          <img src="img/thumbs/4-2.jpg" alt="" />
+                          <div
+                            className="main"
+                            data-img-url="img/service/1.jpg"
+                          />
+                        </div> */}
+                        <div className="main_title">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
+                        <div className="descriptions">
+                          {/* <p>
+                            Aali is a leading web design agency with an
+                            award-winning design team that creates innovative,
+                            effective websites that capture your brand, improve
+                            your conversion rates, and maximize your revenue to
+                            help grow your business and achieve your goals.
+                          </p> */}
+                        
+                        </div>
+                      </div>
+                      <div className="service_popup_informations">
+                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING} />
+                        {/* <div className="image">
+                          <img src="img/thumbs/4-2.jpg" alt="" />
+                          <div
+                            className="main"
+                            data-img-url="img/service/1.jpg"
+                          />
+                        </div> */}
+                        <div className="main_title">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN KITCHEN LIVING</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
+                        <div className="descriptions">
+                          {/* <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
                             effective websites that capture your brand, improve
                             your conversion rates, and maximize your revenue to
                             help grow your business and achieve your goals.
                           </p>
-                        
-                        </div>
-                      </div>
-                      <div className="service_popup_informations">
-                        <Carousel images={ADEEL_KITCHEN} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                        <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
-                            Starts from <span>$49</span>
-                          </span>
-                        </div>
-                        <div className="descriptions">
                           <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                        
+                            In today’s digital world, your website is the first
+                            interaction consumers have with your business.{" "}
+                            {`That's`}
+                            why almost 95 percent of a user’s first impression
+                            relates to web design. It’s also why web design
+                            services can have an immense impact on your company’s
+                            bottom line.
+                          </p> */}
+                      
                         </div>
                       </div>
                       <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DINING_RENDERS} />
+                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -556,12 +724,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN MASTERBED</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -579,42 +747,7 @@ const Portfolio = () => {
                             bottom line.
                           </p>
                       
-                        </div>
-                      </div>
-                      <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DRAWING_RENDERS} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
                         </div> */}
-                        <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
-                            Starts from <span>$49</span>
-                          </span>
-                        </div>
-                        <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div>
                       </div>
                     </ModalBox>
                   </div>
@@ -649,7 +782,7 @@ const Portfolio = () => {
                 <div className={modal === 3 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
-                        <Carousel images={MD_ROOM_SGS_RENDERS} />
+                        <Carousel images={COMMERCIAL_CALIFORNIA_PIZZA} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -658,24 +791,25 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>COMMERCIAL CALIFORNIA PIZZA</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
                         <div className="descriptions">
-                          <p>
+                          {/* <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
                             effective websites that capture your brand, improve
                             your conversion rates, and maximize your revenue to
                             help grow your business and achieve your goals.
-                          </p>
+                          </p> */}
                         
                         </div>
                       </div>
+                     
                       <div className="service_popup_informations">
-                        <Carousel images={ADEEL_KITCHEN} />
+                        <Carousel images={COMMERCIAL_CLASSROOM} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -684,38 +818,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>COMMERCIAL CLASSROOM</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                        
-                        </div>
-                      </div>
-                      <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DINING_RENDERS} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                        <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
-                            Starts from <span>$49</span>
-                          </span>
-                        </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -733,10 +841,10 @@ const Portfolio = () => {
                             bottom line.
                           </p>
                       
-                        </div>
+                        </div> */}
                       </div>
                       <div className="service_popup_informations">
-                        <Carousel images={AMIN_LAKHANI_DRAWING_RENDERS} />
+                        <Carousel images={COMMERCIAL_HARIS_OFFICE} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
                           <div
@@ -745,12 +853,12 @@ const Portfolio = () => {
                           />
                         </div> */}
                         <div className="main_title">
-                          <h3>Video Production</h3>
-                          <span className="price">
+                          <h3>COMMERCIAL HARIS OFFICE</h3>
+                          {/* <span className="price">
                             Starts from <span>$49</span>
-                          </span>
+                          </span> */}
                         </div>
-                        <div className="descriptions">
+                        {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
                             award-winning design team that creates innovative,
@@ -768,7 +876,7 @@ const Portfolio = () => {
                             bottom line.
                           </p>
                       
-                        </div>
+                        </div> */}
                       </div>
                     </ModalBox>
                   </div>
