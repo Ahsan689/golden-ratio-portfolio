@@ -11,13 +11,13 @@ const Carousel = ({images, autoPlayInterval = 3000}) => {
   // --- AUTO-RUN LOGIC START ---
   useEffect(() => {
     // Create the interval
-    const timer = setInterval(() => {
-      handleNextClick();
-    }, autoPlayInterval);
+    // const timer = setInterval(() => {
+    //   handleNextClick();
+    // }, autoPlayInterval);
 
     // Clean up the interval when the component unmounts 
     // or before the effect runs again due to currentIndex changing
-    return () => clearInterval(timer);
+    // return () => clearInterval(timer);
   }, [currentIndex]); // Re-setting on index change ensures the full delay after a manual click
   // --- AUTO-RUN LOGIC END ---
 
@@ -79,9 +79,9 @@ const Carousel = ({images, autoPlayInterval = 3000}) => {
             className={`${styles['carousel-slide']} ${getSlideClass(index)}`}
           >
             <img src={image} alt={`Slide ${index + 1}`} />
-            <div className={styles['slide-overlay']}>
+            {/* <div className={styles['slide-overlay']}>
               <button className={styles['slide-button']}>DISCOVER</button>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>
