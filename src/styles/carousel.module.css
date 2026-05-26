@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 20px;
+  padding: 50px 20px;
 }
 
  .carousel-wrapper {
@@ -13,12 +13,12 @@
   position: relative;
   /* Keep height proportional to width using padding-bottom (16:9). This makes height fit width. */
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  margin-bottom: 60px;
+  margin-bottom: 150px;
 } .carousel-slide {
   position: absolute;
   top: 50%;
   width: 28%; /* base width for side slides */
-  aspect-ratio: 16 / 9; /* maintain consistent aspect ratio */
+  aspect-ratio: 14 / 14; /* maintain consistent aspect ratio */
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.45s cubic-bezier(.2,.8,.2,1);
@@ -169,7 +169,7 @@
 
   .carousel-slide {
     width: 42%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 14/14;
   }
   .slideActive {
     width: 75%;

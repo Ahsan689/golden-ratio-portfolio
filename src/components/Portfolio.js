@@ -225,6 +225,14 @@ const RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH = [
   "Pictures/Residential/2000 SQ YDS/PARENTS BATH/18.jpg"
 ]
 
+const WHATSAPP_UNKNOWN_FOLDER =[
+  'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.04.34 PM (1).jpeg',
+  'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.04.34 PM (2).jpeg',
+  'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.04.34 PM.jpeg',
+  'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.05.55 PM (1).jpeg',
+  'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.05.55 PM.jpeg',
+]
+
 
 
 const Portfolio = () => {
@@ -425,6 +433,12 @@ const Portfolio = () => {
                 <div className={modal === 1 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
+                        <div className="main_title">
+                          <h3>RESIDENTIAL 1400 SQ YDS</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={RESIDENTIAL_1400_SQ_YDS} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -433,12 +447,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 1400 SQ YDS</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                      
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -451,6 +460,12 @@ const Portfolio = () => {
                         </div> */}
                       </div>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>RESIDENTIAL 2000 SQ YDS INDOOR BAR BQ GAMES</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -459,12 +474,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS INDOOR BAR BQ GAMES</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -477,6 +487,12 @@ const Portfolio = () => {
                         </div> */}
                       </div>
                       <div className="service_popup_informations">
+                        <div className="main_title">
+                          <h3>RESIDENTIAL 2000 SQ YDS PARENTS BATH</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -485,12 +501,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS PARENTS BATH</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                        
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -512,6 +523,12 @@ const Portfolio = () => {
                         </div> */}
                       </div>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>RESIDENTIAL 2000 SQ YDS MASTERPLAN</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={RESIDENTIAL_2000_SQ_YDS_MASTERPLAN} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -520,12 +537,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS MASTERPLAN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -628,6 +640,12 @@ const Portfolio = () => {
                 <div className={modal === 2 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>INTERIOR ALFIE LIVING KITCHEN</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={INTERIOR_ALFIE_LIVING_KITCHEN} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -636,12 +654,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>INTERIOR ALFIE LIVING KITCHEN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         <div className="descriptions">
                           {/* <p>
                             Aali is a leading web design agency with an
@@ -654,6 +667,12 @@ const Portfolio = () => {
                         </div>
                       </div>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -662,12 +681,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         <div className="descriptions">
                           {/* <p>
                             Aali is a leading web design agency with an
@@ -680,6 +694,12 @@ const Portfolio = () => {
                         </div>
                       </div>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN KITCHEN LIVING</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -688,12 +708,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN KITCHEN LIVING</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         <div className="descriptions">
                           {/* <p>
                             Aali is a leading web design agency with an
@@ -715,6 +730,12 @@ const Portfolio = () => {
                         </div>
                       </div>
                       <div className="service_popup_informations">
+                          <div className="main_title">
+                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN MASTERBED</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -723,12 +744,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN MASTERBED</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                      
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -782,6 +798,12 @@ const Portfolio = () => {
                 <div className={modal === 3 ? "" : "hidden_content"}>
                     <ModalBox close={setModal}>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>COMMERCIAL CALIFORNIA PIZZA</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={COMMERCIAL_CALIFORNIA_PIZZA} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -790,12 +812,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>COMMERCIAL CALIFORNIA PIZZA</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         <div className="descriptions">
                           {/* <p>
                             Aali is a leading web design agency with an
@@ -809,6 +826,12 @@ const Portfolio = () => {
                       </div>
                      
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>COMMERCIAL CLASSROOM</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={COMMERCIAL_CLASSROOM} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -817,12 +840,7 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
-                          <h3>COMMERCIAL CLASSROOM</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
+                       
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an
@@ -844,6 +862,12 @@ const Portfolio = () => {
                         </div> */}
                       </div>
                       <div className="service_popup_informations">
+                         <div className="main_title">
+                          <h3>COMMERCIAL HARIS OFFICE</h3>
+                          {/* <span className="price">
+                            Starts from <span>$49</span>
+                          </span> */}
+                        </div>
                         <Carousel images={COMMERCIAL_HARIS_OFFICE} />
                         {/* <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="" />
@@ -852,12 +876,43 @@ const Portfolio = () => {
                             data-img-url="img/service/1.jpg"
                           />
                         </div> */}
-                        <div className="main_title">
+                       
+                        {/* <div className="descriptions">
+                          <p>
+                            Aali is a leading web design agency with an
+                            award-winning design team that creates innovative,
+                            effective websites that capture your brand, improve
+                            your conversion rates, and maximize your revenue to
+                            help grow your business and achieve your goals.
+                          </p>
+                          <p>
+                            In today’s digital world, your website is the first
+                            interaction consumers have with your business.{" "}
+                            {`That's`}
+                            why almost 95 percent of a user’s first impression
+                            relates to web design. It’s also why web design
+                            services can have an immense impact on your company’s
+                            bottom line.
+                          </p>
+                      
+                        </div> */}
+                      </div>
+                      <div className="service_popup_informations">
+                         <div className="main_title">
                           <h3>COMMERCIAL HARIS OFFICE</h3>
                           {/* <span className="price">
                             Starts from <span>$49</span>
                           </span> */}
                         </div>
+                        <Carousel images={WHATSAPP_UNKNOWN_FOLDER} />
+                        {/* <div className="image">
+                          <img src="img/thumbs/4-2.jpg" alt="" />
+                          <div
+                            className="main"
+                            data-img-url="img/service/1.jpg"
+                          />
+                        </div> */}
+                       
                         {/* <div className="descriptions">
                           <p>
                             Aali is a leading web design agency with an

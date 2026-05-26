@@ -107,7 +107,7 @@ body{
   scrollbar-width: thin;
   scrollbar-color: #999 #fff;
 }
-body:-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: #fff;
 }
 body::-webkit-scrollbar-thumb {
@@ -1338,8 +1338,8 @@ h6 { font-size: 16px; }
   scrollbar-width: thin;
   scrollbar-color: #dfe2e7 #fff;
 }
-.aali_tm_modalbox .description_wrap:-webkit-scrollbar-track,
-.aali_tm_fixed_content .mainbar:-webkit-scrollbar-track{
+.aali_tm_modalbox .description_wrap::-webkit-scrollbar-track,
+.aali_tm_fixed_content .mainbar::-webkit-scrollbar-track{
   background: #fff;
 }
 .aali_tm_modalbox .description_wrap::-webkit-scrollbar-thumb,
@@ -1681,7 +1681,7 @@ h6 { font-size: 16px; }
 .aali_tm_modalbox .service_popup_informations .main_title{
 	width: 100%;
 	float: left;
-	margin-bottom: 15px;
+	margin-bottom: 105px;
 	margin-top: 30px;
 }
 .aali_tm_modalbox .service_popup_informations .main_title h3{
