@@ -344,11 +344,12 @@ const Portfolio = () => {
               className="aali_tm_main_title"
               data-text-align="center"
               data-color="light"
+              style={{marginBottom: '30px'}}
             >
               {/* <span className="text-black-500">Selected works</span> */}
               <h3>CHECK OUR PORTFOLIO</h3>
             </div>
-            <div className="portfolio_filter">
+            <div className="portfolio_filter" style={{display: 'none'}}>
               {/* <ul>
                 <li>
                   <a onClick={()=> handleFilterKeyChange("*")} className="current">
@@ -390,8 +391,8 @@ const Portfolio = () => {
                     </div>
                     <div className="overlay" />
                     <div className="details">
-                      <span>{item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
-                      <h3>{item.title}</h3>
+                      <h3>{item.category.charAt(0).toUpperCase() + item.category.slice(1)}</h3>
+                      <span>{item.title}</span>
                     </div>
                     <a
                       className="aali_tm_full_link"
@@ -410,17 +411,14 @@ const Portfolio = () => {
                     </div> */}
                   <div className="portfolio_main_photos" >
                     <img src="Pictures/SAUDI_ARABIA_LIVING_ROOM_RENDERS/003.png" alt="aali image" className="portfolio_main_photo_size" />
-                    {/* <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(211, 211, 211, 0.5)' }} /> */}
+                    <div className="overlay" />
+                    <div className="details">
+                      <h3>Residential</h3>
+                      <span>Saudi Arabia Residential</span>
+                    </div>
                   </div>
                     {/* <img src="SAUDI_ARABIA_LIVING_ROOM_RENDERS/New_folder/003.png" width={200} height={200}/> */}
 
-                    <div className="overlay" >
-                      <div className="details">
-                        <h3>Residential</h3>
-                        <h6>Saudi Arabia Residential</h6>
-                      
-                      </div>
-                    </div>
                     <a
                       className="aali_tm_full_link"
                       // href="/portfolio"
@@ -619,17 +617,16 @@ const Portfolio = () => {
                         autoPlay
                         muted
                         loop
-                      />
-                    </div> */}
+                        />
+                        </div> */}
                   <div className="portfolio_main_photos" >
                     <img src="Pictures/CONF ROOM SGS RENDERS/09.jpg" alt="aali image" className="portfolio_main_photo_size"   />
-                    {/* <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(211, 211, 211, 0.5)' }} /> */}
-                  </div>
                     <div className="overlay" />
                     <div className="details">
                       <h3>Interior</h3>
-                      <h6>Ariel View Appartment</h6>
+                      <span>Ariel View Appartment</span>
                     </div>
+                  </div>
                     <a
                       className="aali_tm_full_link "
                       // href="#"
@@ -782,12 +779,12 @@ const Portfolio = () => {
                 <div className="portfolio_main_photos">
 
                     <img src="Pictures/AMIN LAKLHANI KITCHEN 1 RENDERS/002.jpg" alt="aali image" className="portfolio_main_photo_size"  />
-                    </div>
                     <div className="overlay" />
                     <div className="details">
                       <h3>Commercial</h3>
-                      <h6>Lavish Restaurant</h6>
+                      <span>Lavish Restaurant</span>
                     </div>
+                </div>
                     <a
                       className="aali_tm_full_link"
                       // href="#"

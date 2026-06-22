@@ -301,7 +301,7 @@ h6 { font-size: 16px; }
 	clear: both;
 	background-color: #fff;
 	border-bottom: 1px solid rgba(0,0,0,.1);
-	padding: 15px 20px 15px 20px;
+	padding: 7px 20px 7px 20px;
 }
 .aali_tm_mobile_menu .mobile_in{
 	width: 100%;
@@ -313,13 +313,13 @@ h6 { font-size: 16px; }
 	justify-content: space-between;
 }
 .aali_tm_mobile_menu .mobile_in .logo img{
-	max-width: 70px;
-	max-height: 50px;
+	max-width: 60px;
+	max-height: 35px;
 }
 .aali_tm_mobile_menu .trigger{
 	line-height: 0;
 	position: relative;
-	top: 3px;
+	top: 0px;
 }
 .aali_tm_mobile_menu .dropdown{
 	width: 100%;
@@ -357,11 +357,11 @@ h6 { font-size: 16px; }
 	padding: 0px !important;
 }
 .hamburger-inner, .hamburger-inner:after, .hamburger-inner:before{
-	width: 20px !important;
-	height: 1px !important;
+	width: 22px !important;
+	height: 1.5px !important;
 }
 .hamburger-box{
-	width: 30px !important;
+	width: 22px !important;
 }
 
 /*---------------------------------------------------*/
@@ -870,7 +870,7 @@ h6 { font-size: 16px; }
 	margin-bottom: 34px;
 }
 .aali_tm_about .center .small{
-	font-family: "Josefin Sans";
+	font-family: "Rajdhani";
 	font-size: 24px;
 	font-weight: 700;
 	color: #bdaf00;
@@ -879,6 +879,7 @@ h6 { font-size: 16px; }
 	margin-bottom: 6px;
 }
 .aali_tm_about .center h3{
+	font-family: "Rajdhani";
 	font-size: 72px;
 	font-weight: 700;
 	letter-spacing: -.2px;
@@ -887,7 +888,7 @@ h6 { font-size: 16px; }
 	color: #FEC101;
 }
 .aali_tm_about .center .subtitle{
-	font-family: "Josefin Sans";
+	font-family: "Rajdhani";
 	font-size: 36px;
 	font-weight: 700;
 	color: #15111e;
@@ -901,7 +902,8 @@ h6 { font-size: 16px; }
 	margin-bottom: 12px;
 }
 .aali_tm_about .text p{
-	margin-bottom: 31px;
+	font-family: "Rajdhani";
+	margin-bottom: 10px;
 }
 .aali_tm_about .right{
 	width: 25%;
@@ -953,7 +955,7 @@ h6 { font-size: 16px; }
 	clear: both;
 	float: left;
 	background-color: #2596be;
-	padding: 160px 0px 250px 0px;
+	padding: 50px 0px 50px 0px;
 	position: relative;
 }
 .aali_tm_skills .skills_inner{
@@ -1000,21 +1002,23 @@ h6 { font-size: 16px; }
 	color: #fff;
 }
 .aali_tm_main_title span{
-	font-size: 24px;
-	font-family: "Josefin Sans";
-	color: #ea4343;
+	font-size: 20px;
+	font-family: "Rajdhani";
+	color: #ab881a;
 	font-weight: 700;
 	letter-spacing: -.2px;;
 	display: inline-block;
 	margin-bottom: 5px;
 }
 .aali_tm_main_title h3{
-	font-size: 60px;
+	font-family: "Rajdhani";
+	font-size: 45px;
 	font-weight: 700;
 	letter-spacing: -.2px;
 	line-height: 1.3;
 }
 .aali_tm_main_title p{
+	font-family: "Rajdhani";
 	margin-top: 32px;
 }
 .aali_tm_skills .right{
@@ -1102,7 +1106,7 @@ h6 { font-size: 16px; }
 	clear: both;
 	float: left;
 	text-align: center;
-	padding: 78px 0px 55px 0px;
+	padding: 10px 0px 30px 0px;
 }
 .aali_tm_portfolio .portfolio_filter ul{
 	margin: 0px;
@@ -1138,10 +1142,13 @@ h6 { font-size: 16px; }
 	list-style-type: none;
 }
 .aali_tm_portfolio .portfolio_list ul li{
-	margin: 0px 0px 25px 0px;
+	margin: 0px 0px 50px 0px;
 	width: 33.3333%;
 	float: left;
 	padding-left: 25px;
+}
+.aali_tm_portfolio .portfolio_list ul li .list_inner .image img{
+	border-radius: 8%;
 }
 .aali_tm_portfolio .portfolio_list ul li .list_inner{
 	width: 100%;
@@ -1175,11 +1182,11 @@ h6 { font-size: 16px; }
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	z-index: 1;
-	background-color: rgb(0 0 0 / 53%);
-	border-radius: 18px;
-	opacity: 0;
-	visibility: hidden;
+	z-index: 5;
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 8%;
+	opacity: 1;
+	visibility: visible;
 	
 	-webkit-transition: all .3s ease;
 	   -moz-transition: all .3s ease;
@@ -1187,10 +1194,7 @@ h6 { font-size: 16px; }
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
-.aali_tm_portfolio .portfolio_list ul li .list_inner .overlay{
-	opacity: 1;
-	visibility: visible;
-}
+
 /* .aali_tm_portfolio .portfolio_list ul li .list_inner:hover .overlay{
 	opacity: 1;
 	visibility: visible;
@@ -1226,12 +1230,10 @@ h6 { font-size: 16px; }
 	width: 100%;
 	text-align: center;
 	position: absolute;
-	bottom: -10px;
+	bottom: 0px;
 	left: 0px;
-	z-index: 2;
+	z-index: 10;
 	padding: 0px 20px 35px 20px;
-	opacity: 0;
-	visibility: hidden;
 	
 	-webkit-transition: all .3s ease;
 	   -moz-transition: all .3s ease;
@@ -1239,16 +1241,7 @@ h6 { font-size: 16px; }
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
-/* .aali_tm_portfolio .portfolio_list ul li .list_inner:hover .details{
-	opacity: 1;
-	visibility: visible;
-	bottom: 0px;
-} */
-.aali_tm_portfolio .portfolio_list ul li .list_inner .details{
-	opacity: 1;
-	visibility: visible;
-	bottom: 0px;
-}
+
 .aali_tm_portfolio .portfolio_list .details span{
 	font-size: 16px;
 	color: #fff;
@@ -1685,13 +1678,14 @@ h6 { font-size: 16px; }
 	margin-top: 30px;
 }
 .aali_tm_modalbox .service_popup_informations .main_title h3{
-	font-size: 30px;
+	font-family: "Rajdhani";
+	font-size: 24px;
 }
 .aali_tm_modalbox .service_popup_informations .main_title span{
+	font-family: "Rajdhani";
 	font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: -.2px;
-    font-family: "Josefin Sans";
 	color: #7d7789;
 }
 .aali_tm_modalbox .service_popup_informations .main_title span span{
@@ -1747,6 +1741,7 @@ h6 { font-size: 16px; }
 	padding-left: 100px;
 }
 .aali_tm_resume .main_title{
+	font-family: "Rajdhani";
 	font-weight: 700;
 	letter-spacing: -.2px;
 	margin-bottom: 33px;
@@ -2379,12 +2374,12 @@ h6 { font-size: 16px; }
 .aali_tm_contact .left ul li h3{
 	font-size: 30px;
 	font-weight: 700;
-	color: #ea4343;
+	color: #ab881a;
 	letter-spacing: -.2px;
 }
 .aali_tm_contact .left ul li a{
 	text-decoration: none;
-	color: #ea4343;
+	color: #ab881a;
 }
 .aali_tm_contact .right{
 	width: 50%;
@@ -2539,7 +2534,7 @@ input[type=number] {
 	border-radius: 100%;
 	text-align: center;
 	line-height: 48px;
-	color: #ea4343;
+	color: #ab881a;
 	
 	-webkit-transition: all .3s ease;
 	   -moz-transition: all .3s ease;
@@ -2548,7 +2543,7 @@ input[type=number] {
 	        transition: all .3s ease;
 }
 .aali_tm_copyright .social ul li a:hover{
-	background-color: #ea4343;
+	background-color: #ab881a;
 	color: #fff;
 }
 .aali_tm_copyright .social span{
@@ -2968,10 +2963,10 @@ body.intro .loader_line:after{
 	.aali_tm_hero .avatar .four{width: 285px;height: 305px;}
 	.aali_tm_hero .five{width: 35px;height: 50px;right: -135px;}
 	.aali_tm_hero .stroke_text{font-size: 200px;right: -125px;margin-top: -44px;}
-	.aali_tm_about .center .small{font-size: 18px;}
-	.aali_tm_about .center h3{font-size: 40px;}
-	.aali_tm_about .center .subtitle{font-size: 25px;margin-top: 10px;}
-	.aali_tm_about .text p{margin-bottom: 20px;}
+	.aali_tm_about .center .small{font-size: 18px; font-family: "Rajdhani";}
+	.aali_tm_about .center h3{font-size: 40px; font-family: "Rajdhani";}
+	.aali_tm_about .center .subtitle{font-size: 25px;margin-top: 10px; font-family: "Rajdhani";}
+	.aali_tm_about .text p{margin-bottom: 10px; font-family: "Rajdhani";}
 	.aali_tm_about .center .title{margin-bottom: 23px;}
 	.aali_tm_about .border{height: 200px;margin-right: -30px;}
 	.aali_tm_about .square{width: 200px;height: 200px;}
@@ -2980,11 +2975,11 @@ body.intro .loader_line:after{
 	.aali_tm_about .right{top: 240px;}
 	.aali_tm_about .center{padding: 0px 50px 0px 80px;}
 	.aali_tm_main_title{max-width: 500px;}
-	.aali_tm_main_title span{font-size: 18px;}
-	.aali_tm_main_title h3{font-size: 40px;}
+	.aali_tm_main_title span{font-size: 16px; font-family: "Rajdhani";}
+	.aali_tm_main_title h3{font-size: 35px; font-family: "Rajdhani";}
 	.progress_inner > span{font-size: 19px;}
 	.progress_inner > span{margin-bottom: 8px;}
-	.aali_tm_portfolio .portfolio_filter{padding-bottom: 40px;}
+	.aali_tm_portfolio .portfolio_filter{padding-bottom: 20px;}
 	.aali_tm_portfolio .portfolio_filter ul li{margin-right: 30px;}
 	.aali_tm_portfolio .portfolio_list .svg{width: 42px;height: 42px;}
 	.aali_tm_skills .border{bottom: -167px;margin-right: -210px;}
@@ -2997,7 +2992,7 @@ body.intro .loader_line:after{
 	.aali_tm_service .service_list .icon .svg{width: 40px;height: 40px;top: 16px;left: 22px;}
 	.aali_tm_service .service_list ul li .list_inner{padding: 50px 30px 50px 130px;}
 	.aali_tm_service .service_list .wrapper h3{font-size: 25px;margin-bottom: 25px;}
-	.aali_tm_resume .main_title{font-size: 25px;}
+	.aali_tm_resume .main_title{font-size: 25px; font-family: "Rajdhani";}
 	.aali_tm_resume .info .left h3{font-size: 19px;margin-bottom: 0px;}
 	.aali_tm_resume .info .left span{font-size: 16px;}
 	.aali_tm_resume .info .right span{font-size: 14px;}
@@ -3063,10 +3058,10 @@ body.intro .loader_line:after{
 	.aali_tm_skills .skills_inner{flex-direction: column;align-items: baseline;}
 	.aali_tm_skills .left{width: 100%;padding-right: 0px;margin-bottom: 50px;}
 	.aali_tm_skills .right{width: 100%;padding-left: 0px;}
-	.aali_tm_main_title h3{font-size: 20px; margin-top:30px}
+	.aali_tm_main_title h3{font-size: 25px; margin-top:30px; font-family: "Rajdhani";}
 	.aali_tm_main_title{max-width: 100%;}
 	.aali_tm_skills .border{display: none;}
-	.aali_tm_portfolio .portfolio_list ul li{width: 50%;}
+	.aali_tm_portfolio .portfolio_list ul li{width: 33.3333%;}
 	.aali_tm_service .square_right{display: none;}
 	.aali_tm_service .service_list ul{margin: 0px;}
 	.aali_tm_service .service_list ul li{width: 100%;padding-left: 0px;}
@@ -3108,11 +3103,11 @@ body.intro .loader_line:after{
 	.aali_tm_hero .cd-headline b{font-size: 30px;}
 	.aali_tm_hero .simple_button{margin-left: 20px;}
 	.aali_tm_about{padding: 0px 0px;}
-	.aali_tm_about .center h3{font-size: 30px;}
-	.aali_tm_about .center .subtitle{font-size: 20px;}
-	.aali_tm_skills{padding-top: 15px;padding-bottom: 150px;}
+	.aali_tm_about .center h3{font-size: 30px; font-family: "Rajdhani";}
+	.aali_tm_about .center .subtitle{font-size: 20px; font-family: "Rajdhani";}
+	.aali_tm_skills{padding-top: 10px;padding-bottom: 30px;}
 	.aali_tm_portfolio .portfolio_list ul{margin: 0px;}
-	.aali_tm_portfolio .portfolio_list ul li{width: 100%;padding-left: 0px;}
+ .aali_tm_portfolio .portfolio_list ul li{width: 80%;padding-left: 0px;margin-bottom: 80px; float: none; margin-left: auto; margin-right: auto;}
 	.aali_tm_portfolio .portfolio_list .svg{width: 30px;height: 30px;}
 	.aali_tm_portfolio .portfolio_list .details h3{font-size: 18px;}
 	.aali_tm_portfolio .portfolio_filter{text-align: left;}
@@ -3148,7 +3143,7 @@ body.intro .loader_line:after{
 	.aali_tm_modalbox .close{margin-left: -30px;top: -40px;}
 	.aali_tm_modalbox .description_wrap{padding: 63px 10px 0 20px;}
 	.aali_tm_modalbox .news_popup_informations .details .title{font-size: 22px;}
-	.aali_tm_modalbox .service_popup_informations .main_title h3{font-size: 22px;}
+	.aali_tm_modalbox .service_popup_informations .main_title h3{font-size: 20px; font-family: "Rajdhani";}
 
 	.aali_tm_about .square{
 		display: none;
@@ -3160,40 +3155,49 @@ body.intro .loader_line:after{
 	.aali_tm_about .left{
 		width :auto
 	}
+	.aali_tm_about .text{
+		margin-bottom: 0px;
+	}
 	.aali_tm_about .right{
 		width :auto !important;
 		display :block;
+		height: auto;
+		position: relative;
+		top: 0px;
+		margin-top: 20px;
+	}
+	.aali_tm_about .right .image{
+		margin-right: 0px;
+		margin-bottom: 30px;
+	}
+	.aali_tm_about .right .image img{
+		display: block;
+		width: 65% !important;
+		min-width: 0px !important;
+		margin: 0 auto;
+		height: auto;
+		opacity: 1;
+	}
+	.aali_tm_about .right .main {
+		display: none;
 	}
 	.aali_tm_about .right .square{
 		display: none;
 	}
-	.aali_tm_about .right .main {
-		position: absolute;
-		top: 230px;
-		bottom: 0px;
-		left: 35px;
-		right: 0px;
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: center;
-		border-radius: 10px;
-		z-index: 1;
-	}
 	.aali_tm_about .left .image .main{
-		position: absolute;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: right;
-		border-radius: 10px;
-		z-index: 1;
+		display: none;
+	}
+	.aali_tm_about .left .image img{
+		display: block;
+		width: 65% !important;
+		min-width: 0px !important;
+		margin: 0 auto;
+		height: auto;
+		opacity: 1;
 	}
 	.aali_tm_about .left .image{
-		margin-left: 40px !important;
-        margin-right: 40px;
+		margin-left: 0px !important;
+        margin-right: 0px;
         margin-bottom: 60px;
 	}
 
@@ -3217,15 +3221,24 @@ body.intro .loader_line:after{
 	.portfolio_main_photos{
 		position: relative;
 		width: 100%; 
-		height: 190px; 	
+		height: 180px !important; 	
+		overflow: hidden;
+		border-radius: 8%;
+		margin-bottom: 15px;
 	}
 	.aali_tm_modalbox .service_popup_informations{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	margin-bottom: 25%;
-}
+		width: 100%;
+		height: auto;
+		clear: both;
+		float: left;
+		margin-bottom: 20px !important;
+	}
+	.aali_tm_modalbox .service_popup_informations .main_title{
+		margin-bottom: 30px !important;
+	}
+	.aali_tm_main_title{
+		margin-bottom: 20px !important;
+	}
 }
 
 /* @media(width <= 1440px){
@@ -3252,8 +3265,11 @@ body.intro .loader_line:after{
 .portfolio_main_photos{
 	position: relative;
 	width: 100%; 
-	height: 190px; 
+	height: 350px; 
+	overflow: hidden;
+	border-radius: 8%;
+	margin-bottom: 20px;
 }
 .portfolio_main_photo_size{
-	 width: 100%; height: auto; object-fit: cover; border-radius:8%
+	 width: 100%; height: 100%; object-fit: cover; border-radius: 8%;
 }

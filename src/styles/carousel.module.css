@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 20px;
+  padding: 50px 20px 20px 20px;
 }
 
  .carousel-wrapper {
@@ -162,17 +162,32 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* Tablet: slightly taller aspect to give more vertical room */
+  /* Mobile: single image focus layout */
   .carousel-wrapper {
-    padding-bottom: 62.5%;
+    padding-bottom: 75%; /* Adjust height for single focus */
+    margin-bottom: 50px;
+    perspective: none; /* Disable 3D perspective on mobile */
   }
 
   .carousel-slide {
-    width: 42%;
-    aspect-ratio: 14/14;
+    display: none !important; /* Hide all slides by default on mobile */
   }
+
+  /* Only show the active slide */
   .slideActive {
-    width: 75%;
+    display: flex !important;
+    width: 100% !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    box-shadow: none;
+    z-index: 10;
+  }
+
+  /* Hide side slides on mobile */
+  .side {
+    display: none !important;
   }
 
   .carousel-nav {
@@ -183,31 +198,3 @@
     gap: 20px;
   }
 } 
-
-@media (max-width: 480px) {
-  /* Mobile: compact carousel with smaller image size and reduced height */
-  .carousel-container {
-    padding: 24px 12px;
-  }
-
-  .carousel-wrapper {
-    padding-bottom: 30%; /* shorter height on mobile */
-    max-width: 240px;
-  }
-
-  .carousel-slide {
-    width: 30%;
-    aspect-ratio: 4/5;
-  }
-  .slideActive {
-    width: 65%;
-  }
-
-  .carousel-nav {
-    font-size: 16px;
-  }
-
-  .carousel-controls {
-    gap: 8px;
-  }
-}

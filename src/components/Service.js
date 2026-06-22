@@ -83,9 +83,9 @@ const Service = ({ dark }) => {
                   </span>
                   <div className="title">
                     <h3>Conceptual Design & Vision</h3>
-                    <span className="price">
-                      Starts from <span>$49</span>
-                    </span>
+                    {/*<span className="price">*/}
+                    {/*  Starts from <span>$49</span>*/}
+                    {/*</span>*/}
                   </div>
                   <div className="text">
                     <p>
@@ -117,9 +117,9 @@ const Service = ({ dark }) => {
                   </span>
                   <div className="title">
                     <h3>✍️ Technical Drafting & Documentation</h3>
-                    <span className="price">
-                      Starts from <span>$59</span>
-                    </span>
+                    {/*<span className="price">*/}
+                    {/*  Starts from <span>$59</span>*/}
+                    {/*</span>*/}
                   </div>
                   <div className="text">
                     <p>
@@ -155,9 +155,9 @@ const Service = ({ dark }) => {
                   </span>
                   <div className="title">
                     <h3>✨ 3D Modeling & Visualization</h3>
-                    <span className="price">
-                      Starts from <span>$69</span>
-                    </span>
+                    {/*<span className="price">*/}
+                    {/*  Starts from <span>$69</span>*/}
+                    {/*</span>*/}
                   </div>
                   <div className="text">
                     <p>
@@ -189,9 +189,9 @@ const Service = ({ dark }) => {
                   </span>
                   <div className="title">
                     <h3>🛠️ Construction Administration & Oversight</h3>
-                    <span className="price">
-                      Starts from <span>$79</span>
-                    </span>
+                    {/*<span className="price">*/}
+                    {/*  Starts from <span>$79</span>*/}
+                    {/*</span>*/}
                   </div>
                   <div className="text">
                     <p>
