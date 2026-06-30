@@ -53,6 +53,7 @@ const replayVideo = () => {
         <source src={"/videos/main-title-page-animation-with-logos.mp4"} type={"video/mp4"} />
         Your browser does not support the video tag.
       </video>
+      
 
         {/* <div className="container">
           <div className="hero_inner">
