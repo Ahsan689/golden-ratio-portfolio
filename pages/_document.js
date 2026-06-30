@@ -9,7 +9,17 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head >
+          {/* Preconnect links for faster loading */}
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+            
+            {/* The Rajdhani Font Link Component */}
+            <link 
+              href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" 
+              rel="stylesheet" 
+            />
+        </Head>
         <body>
           <Main />
           <NextScript />
