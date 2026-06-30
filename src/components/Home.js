@@ -50,7 +50,7 @@ const replayVideo = () => {
       <div className="aali_tm_hero">
       {/* <video  style={{width:"100%",height:"auto"}}  src={videoSrc} type={videoType} autoPlay muted loop preload="auto" /> */}
       <video id="video" autoPlay muted loop preload="metadata" onEnded={replayVideo} style={{width:"100%",height:"auto"}} >
-        <source src={"/videos/Main-title-page-animation-with-logos.mp4"} type={"video/mp4"} />
+        <source src={"/videos/main-title-page-animation-with-logos.mp4"} type={"video/mp4"} />
         Your browser does not support the video tag.
       </video>
 
