@@ -24,10 +24,7 @@ const MobileMenu = () => {
           </div>
         </div>
       </div>
-      <div
-        className="dropdown"
-        style={{ display: `${toggle ? "block" : "none"}` }}
-      >
+      <div className={`dropdown ${toggle ? "active" : ""}`}>
         <div className="dropdown_inner">
           <ul className="anchor_nav">
             <li className="current">
