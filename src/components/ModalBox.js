@@ -1,13 +1,110 @@
-const ModalBox = ({ children, close }) => {
+import { useEffect, useRef, useState } from "react";
+import useScrollLock from "../hooks/useScrollLock";
+
+const CLOSE_MS = 200;
+
+const ModalBox = ({ children, close, isOpen = false }) => {
+  const [active, setActive] = useState(false); // adds .is-open (enter / open state)
+  const [closing, setClosing] = useState(false); // adds .is-closing (exit state)
+  const boxRef = useRef(null);
+  const closingRef = useRef(false); // guards against double-close during animation
+  const timerRef = useRef(null);
+
+  // Keep the page scroll locked the whole time the modal is on screen —
+  // including while the close animation plays. It only unlocks once `close(0)`
+  // flips isOpen to false (which happens in finalize, after the animation ends).
+  useScrollLock(isOpen);
+
+  // Enter animation: when opened, paint the closed state first, then activate
+  // on the next frame so the transition runs.
+  useEffect(() => {
+    if (isOpen) {
+      closingRef.current = false;
+      setClosing(false);
+      setActive(false);
+      const raf = requestAnimationFrame(() =>
+        requestAnimationFrame(() => setActive(true))
+      );
+      return () => cancelAnimationFrame(raf);
+    }
+    // Parent marked it closed (after finalize): reset internal state.
+    setActive(false);
+    setClosing(false);
+    closingRef.current = false;
+    return undefined;
+  }, [isOpen]);
+
+  // Runs after the close animation finishes: removes the modal for real and,
+  // via close(0) -> isOpen=false, releases the scroll lock.
+  const finalize = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    setClosing(false);
+    closingRef.current = false;
+    close(0);
+  };
+
+  // Single animated close path used by the button, backdrop and Escape.
+  const requestClose = () => {
+    if (closingRef.current) return; // prevent double-clicks during animation
+    closingRef.current = true;
+    setActive(false); // remove is-open -> animate back to closed
+    setClosing(true); // is-closing -> use the faster 200ms transition
+    // Fallback in case transitionend doesn't fire (e.g. reduced motion).
+    timerRef.current = setTimeout(finalize, CLOSE_MS + 60);
+  };
+
+  const handleBoxTransitionEnd = (e) => {
+    if (!closingRef.current) return;
+    if (e.target !== boxRef.current) return; // ignore bubbled child transitions
+    if (e.propertyName !== "transform" && e.propertyName !== "opacity") return;
+    finalize();
+  };
+
+  // Escape closes (only while open).
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape" || e.key === "Esc") requestClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  // Clean up the fallback timer if unmounted mid-animation.
+  useEffect(
+    () => () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    },
+    []
+  );
+
+  // Close when the dark backdrop itself is clicked (not the inner content).
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) requestClose();
+  };
+
+  const className =
+    "aali_tm_modalbox" +
+    (active ? " is-open" : "") +
+    (closing ? " is-closing" : "");
+
   return (
-    <div className="aali_tm_modalbox opened">
-      <div className="box_inner">
+    <div className={className} onClick={handleBackdropClick}>
+      <div
+        className="box_inner"
+        ref={boxRef}
+        onTransitionEnd={handleBoxTransitionEnd}
+      >
         <div className="close">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              close(0);
+              requestClose();
             }}
           >
             <svg

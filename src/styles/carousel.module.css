@@ -163,9 +163,19 @@
 /* Responsive */
 @media (max-width: 768px) {
   /* Mobile: single image focus layout */
+
+  /* Tighten the vertical rhythm: no bulky container padding on mobile,
+     spacing between heading <-> slider <-> next heading is kept consistent
+     (~14px) via the margins below and the modal heading rules. */
+  .carousel-container {
+    padding: 0 20px; /* was 50px 20px 20px — removes top/bottom dead space */
+  }
+
   .carousel-wrapper {
-    padding-bottom: 75%; /* Adjust height for single focus */
-    margin-bottom: 50px;
+    /* Match the square active slide (aspect 1:1) so the image is fully
+       contained instead of spilling out and overlapping the dots/heading. */
+    padding-bottom: 100%;
+    margin-bottom: 12px; /* gap between image and dots */
     perspective: none; /* Disable 3D perspective on mobile */
   }
 
@@ -196,5 +206,6 @@
 
   .carousel-controls {
     gap: 20px;
+    margin-bottom: 0; /* was 40px — removes dead space below the dots */
   }
-} 
+}

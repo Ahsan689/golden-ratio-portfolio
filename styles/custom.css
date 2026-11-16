@@ -376,3 +376,74 @@ img.mfp-img {
 .aali_tm_portfolio .portfolio_list .list_inner:hover .details h3::after {
   width: 44px;
 }
+
+/* Modal: stop scroll chaining from reaching the background page */
+.aali_tm_modalbox .description_wrap {
+  overscroll-behavior: contain;
+}
+
+/* ===== Modal open/close animation (GPU-friendly: opacity + transform only) ===== */
+/* Resting/closed state */
+.aali_tm_modalbox {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 0s linear 250ms;
+}
+.aali_tm_modalbox .box_inner {
+  opacity: 0;
+  /* keep the template's horizontal centering (-50%) + enter offset/scale */
+  transform: translate(-50%, 20px) scale(0.95);
+  margin-top: 0;            /* neutralize template's margin-top animation */
+  visibility: inherit;      /* follow the overlay's visibility, not a fixed hidden */
+  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Open state */
+.aali_tm_modalbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms ease, visibility 0s;
+}
+.aali_tm_modalbox.is-open .box_inner {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  will-change: opacity, transform;
+}
+
+/* Close state (faster reverse, 200ms) */
+.aali_tm_modalbox.is-closing {
+  transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+.aali_tm_modalbox.is-closing .box_inner {
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Respect reduced-motion: no animation, instant show/hide */
+@media (prefers-reduced-motion: reduce) {
+  .aali_tm_modalbox,
+  .aali_tm_modalbox .box_inner,
+  .aali_tm_modalbox.is-open,
+  .aali_tm_modalbox.is-open .box_inner,
+  .aali_tm_modalbox.is-closing,
+  .aali_tm_modalbox.is-closing .box_inner {
+    transition: none !important;
+  }
+}
+
+/* ===== Modal section spacing (mobile) — consistent ~14px rhythm =====
+   Collapses the oversized gaps between each heading, its slider, and the
+   next heading. Reusable: targets the repeating .service_popup_informations
+   / .main_title structure, so it covers every section and any added later.
+   Only margins change here — heading font, image size and dots are untouched. */
+@media (max-width: 768px) {
+  .aali_tm_modalbox .service_popup_informations {
+    margin-bottom: 0 !important; /* was 20px — no dead space between sections */
+  }
+  .aali_tm_modalbox .service_popup_informations .main_title {
+    margin-top: 12px !important;    /* gap from the previous slider's dots */
+    margin-bottom: 12px !important; /* gap from the heading to its own slider */
+  }
+}

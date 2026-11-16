@@ -429,7 +429,7 @@ const Portfolio = () => {
                 
                 </li>
                 <div className={modal === 1 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 1}>
                       <div className="service_popup_informations">
                         <div className="main_title">
                           <h3>RESIDENTIAL 1400 SQ YDS</h3>
@@ -635,7 +635,7 @@ const Portfolio = () => {
                   </div>
                 </li>
                 <div className={modal === 2 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 2}>
                       <div className="service_popup_informations">
                          <div className="main_title">
                           <h3>INTERIOR ALFIE LIVING KITCHEN</h3>
@@ -793,7 +793,7 @@ const Portfolio = () => {
                   </div>
                 </li>
                 <div className={modal === 3 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 3}>
                       <div className="service_popup_informations">
                          <div className="main_title">
                           <h3>COMMERCIAL CALIFORNIA PIZZA</h3>
@@ -951,7 +951,7 @@ const Portfolio = () => {
                       onClick={() => setModal(1)}
                     />
                     <div className={modal === 1 ? "" : "hidden_content"}>
-                      <ModalBox close={setModal}>
+                      <ModalBox close={setModal} isOpen={modal === 1}>
                         <div className="popup_details">
                           <div className="top_image">
                             <img src="img/thumbs/4-2.jpg" alt="" />
@@ -1102,7 +1102,7 @@ const Portfolio = () => {
                       onClick={() => setModal(2)}
                     />
                     <div className={modal === 2 ? "" : "hidden_content"}>
-                      <ModalBox close={setModal}>
+                      <ModalBox close={setModal} isOpen={modal === 2}>
                         <div className="popup_details">
                           <div className="top_image">
                             <img src="img/thumbs/4-2.jpg" alt="" />

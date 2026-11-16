@@ -68,7 +68,7 @@ const Blog = () => {
                     </div>
                   </div> */}
                    <div className={hidden(1)}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 1}>
                       <div className="news_popup_informations">
                         <div className="image">
                           <img src="
@@ -185,7 +185,7 @@ const Blog = () => {
                     </div>
                   </div> */}
                   <div className={hidden(2)}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 2}>
                       <div className="news_popup_informations">
                         <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="aali image" />
@@ -282,7 +282,7 @@ const Blog = () => {
                     </div>
                   </div> */}
                   <div className={hidden(2)}>
-                    <ModalBox close={setModal}>
+                    <ModalBox close={setModal} isOpen={modal === 2}>
                       <div className="news_popup_informations">
                         <div className="image">
                           <img src="img/thumbs/4-2.jpg" alt="aali image" />
