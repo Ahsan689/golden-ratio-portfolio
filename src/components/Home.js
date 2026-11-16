@@ -8,17 +8,7 @@ import { FaInstagram } from "react-icons/fa";
 import { BsTiktok } from "react-icons/bs";
 import { FaWhatsapp } from "react-icons/fa";
 
-export async function getServerSideProps() {
-  // Perform any server-side operations, e.g., fetching video metadata
-  return {
-    props: {
-      videoSrc: "videos/Main-title-page-animation-with-logos.mp4",
-      videoType: "video/mp4"
-    }
-  };
-}
-
-const Home = ({videoSrc, videoType}) => {
+const Home = () => {
   const [text, setText] = useState(1);
   const videoref = useRef()
   useEffect(() => {
@@ -49,8 +39,20 @@ const replayVideo = () => {
     <div className="aali_tm_section " id="home">
       <div className="aali_tm_hero">
       {/* <video  style={{width:"100%",height:"auto"}}  src={videoSrc} type={videoType} autoPlay muted loop preload="auto" /> */}
-      <video id="video" autoPlay muted loop preload="metadata" onEnded={replayVideo} style={{width:"100%",height:"auto"}} >
-        <source src={"/videos/main-title-page-animation-with-logos.mp4"} type={"video/mp4"} />
+      <video
+        id="video"
+        className="hero_video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onEnded={replayVideo}
+      >
+        <source
+          src={"/videos/Main-Title-Page-Animation-With-Logos-UPDATED.mp4"}
+          type={"video/mp4"}
+        />
         Your browser does not support the video tag.
       </video>
       

@@ -204,3 +204,35 @@ img.mfp-img {
   padding: 0;
   width: unset !important;
 }
+
+/* Hero video — responsive height */
+.hero_video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #1c1c1c;
+}
+
+/* Taller hero on mobile: fill a set height and crop cleanly instead of shrinking */
+@media (max-width: 768px) {
+  .hero_video {
+    height: 100vh;        /* adjust this value to taste (e.g. 70vh, 90vh, 100vh) */
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* Signature Collection — larger, full-width images on mobile phones only */
+@media (max-width: 480px) {
+  .aali_tm_news .news_list {
+    padding-left: 0;        /* remove the 18% left indent that shrinks images */
+  }
+  .aali_tm_news .news_list ul li .list_inner {
+    width: 100%;            /* was 80% — use full width */
+  }
+  .aali_tm_news .news_list ul li .image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
