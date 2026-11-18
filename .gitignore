@@ -3,3 +3,6 @@ out
 .next
 .idea
 package-lock.json
+
+# Archived original (pre-optimization) portfolio images — kept locally, not deployed
+_originals

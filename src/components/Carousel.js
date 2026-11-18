@@ -3,10 +3,44 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/carousel.module.css';
 
+// How many slides on EACH side of the active one get their src set.
+// 1 = active + the two visible previews; we use 2 so the next slide in either
+// direction is already downloaded before it animates into view.
+const PRELOAD_RADIUS = 2;
+
+// Set of indexes within PRELOAD_RADIUS of `center` (wrapping around the ends).
+const nearIndexes = (center, length) => {
+  const set = new Set();
+  if (length > 0) {
+    for (let d = -PRELOAD_RADIUS; d <= PRELOAD_RADIUS; d++) {
+      set.add(((center + d) % length + length) % length);
+    }
+  }
+  return set;
+};
+
 const Carousel = ({images, autoPlayInterval = 3000}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loaded, setLoaded] = useState({}); // tracks which image indexes have finished loading
+  // Indexes whose <img> should actually have a src. Accumulates as you navigate
+  // so a slide, once loaded, is never unloaded/re-fetched when you scroll back.
+  const [toLoad, setToLoad] = useState(() => nearIndexes(0, images.length));
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  // As the active slide changes, add its neighborhood to the load set.
+  useEffect(() => {
+    setToLoad((prev) => {
+      const next = new Set(prev);
+      nearIndexes(currentIndex, images.length).forEach((i) => next.add(i));
+      // Avoid a state update if nothing new was added.
+      return next.size === prev.size ? prev : next;
+    });
+  }, [currentIndex, images.length]);
+
+  const handleImageLoad = (index) => {
+    setLoaded((prev) => (prev[index] ? prev : { ...prev, [index]: true }));
+  };
 
   // --- AUTO-RUN LOGIC START ---
   useEffect(() => {
@@ -78,7 +112,23 @@ const Carousel = ({images, autoPlayInterval = 3000}) => {
             key={index} 
             className={`${styles['carousel-slide']} ${getSlideClass(index)}`}
           >
-            <img src={image} alt={`Slide ${index + 1}`} />
+            {index === currentIndex && !loaded[index] && (
+              <div className={styles.skeleton} aria-hidden="true" />
+            )}
+            <img
+              // Lazy load: only slides near the active one get a real src.
+              // Far-off slides stay empty until you navigate toward them.
+              src={toLoad.has(index) ? image : undefined}
+              alt={`Slide ${index + 1}`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => handleImageLoad(index)}
+              // Fade in only applies to the active (center) slide; side/preview
+              // slides render normally and are left untouched.
+              style={{
+                opacity: index === currentIndex && !loaded[index] ? 0 : 1,
+              }}
+            />
             {/* <div className={styles['slide-overlay']}>
               <button className={styles['slide-button']}>DISCOVER</button>
             </div> */}

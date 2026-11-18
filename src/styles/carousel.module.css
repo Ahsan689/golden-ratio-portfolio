@@ -17,30 +17,74 @@
 } .carousel-slide {
   position: absolute;
   top: 50%;
-  width: 28%; /* base width for side slides */
-  aspect-ratio: 14 / 14; /* maintain consistent aspect ratio */
+  left: 50%; /* every slide shares one anchor; position is done with transforms */
+  width: 90%; /* single base size for ALL slides (the active width) */
+  aspect-ratio: 4 / 3; /* uniform 4:3 frame for every slide regardless of source ratio */
   overflow: hidden;
   border-radius: 10px;
-  transition: all 0.45s cubic-bezier(.2,.8,.2,1);
+  /* Only transform + opacity + box-shadow animate — all three are compositor
+     (GPU) properties, so no layout reflow happens on any frame. This is what
+     makes the movement buttery vs. animating width/left/right. */
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   align-items: flex-end;
   cursor: pointer;
-  transform: translateY(-50%); /* vertically center slides */
+  /* Default/resting pose = a small centered slide (used by .hidden too). */
+  transform: translate(-50%, -50%) scale(0.29);
+  /* GPU hints: promote each slide to its own layer and keep 3D transforms crisp. */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .carousel-slide img {
   width: 100%;
   height: 100%;
-  /* object-fit: cover; */
+  object-fit: cover; /* fill the 4:3 frame, center-crop any overflow — no distortion */
+  object-position: center;
   display: block;
+  transition: opacity 0.4s ease;
 }
 
-/* Active slide - center, larger */
+/* Skeleton loader — shimmer placeholder shown until the image finishes loading */
+.skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 10px;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.06) 25%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.06) 75%
+  );
+  background-color: rgba(255, 255, 255, 0.05);
+  background-size: 200% 100%;
+  animation: carousel-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes carousel-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* Active slide - center, larger. Pure transform scale from the shared base. */
 .slideActive {
   z-index: 30;
-  width: 90%; /* increased center image width */
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.06) translateZ(0);
+  transform: translate(-50%, -50%) scale(1.06);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
 }
 
@@ -50,18 +94,17 @@
   opacity: 0.78; /* slightly more visible */
 }
 
-/* Left and right side classes - applied from JS so we can position reliably */
+/* Left/right side poses — translateX shifts the slide into the side zone and
+   scale shrinks it, matching the old width/left layout but with zero reflow. */
 .side-left {
-  left: 6%;
-  transform: translate(-6%, -50%) scale(0.94) rotateY(12deg);
+  transform: translate(-85%, -50%) scale(0.29) rotateY(12deg);
 }
 
 .side-right {
-  right: 6%;
-  transform: translate(6%, -50%) scale(0.94) rotateY(-12deg);
+  transform: translate(-15%, -50%) scale(0.29) rotateY(-12deg);
 }
 
-/* Hidden slides */
+/* Hidden slides — invisible, keep the resting centered pose from the base rule */
 .hidden {
   opacity: 0;
   z-index: 1;
@@ -172,9 +215,9 @@
   }
 
   .carousel-wrapper {
-    /* Match the square active slide (aspect 1:1) so the image is fully
-       contained instead of spilling out and overlapping the dots/heading. */
-    padding-bottom: 100%;
+    /* Match the 4:3 active slide so the image frame is fully contained
+       instead of spilling out and overlapping the dots/heading. */
+    padding-bottom: 75%; /* 4:3 ratio (3/4) */
     margin-bottom: 12px; /* gap between image and dots */
     perspective: none; /* Disable 3D perspective on mobile */
   }
