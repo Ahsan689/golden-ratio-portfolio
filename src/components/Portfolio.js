@@ -1,5 +1,4 @@
-import Isotope from "isotope-layout";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from 'next/link'
 import {
@@ -240,47 +239,25 @@ const Portfolio = () => {
   const router = useRouter()
   console.log("router",router);
   console.log("Link",Link);
-  // Isotope
-  const isotope = useRef();
-  const [filterKey, setFilterKey] = useState("residential");
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     isotope.current = new Isotope(".gallery_zoom", {  
-  //       itemSelector: ".filter-item",
-  //       layoutMode: "fitRows",
-  //     });
-  //     // isotope.current.arrange({ filter: '.residential' });
-  //   }, 300);
-  //   return () => isotope.current.destroy();
-  // }, []);
-  
-  // useEffect(() => {
-  //   // dataImage();
-  //   // aTagClick();
-  //   if (isotope.current) {
-  //     console.log("isotope.current",isotope.current);
-  //     console.log("filterKey",filterKey);
-  //     // filterKey === "*"
-  //     //   ? isotope.current.arrange({ filter: `*` })
-  //     //   : isotope.current.arrange({ filter: `.${filterKey}` });
-  //     isotope.current.arrange({ filter: `.${filterKey}` });
-  //     // return () => isotope.current.destroy();
-  //   }
-  // }, [filterKey]);
-  
-  const handleFilterKeyChange = (key) => {
-    setFilterKey(key);
+  // Category filtering via a clean cross-fade (no sliding reflow): fade the
+  // grid out, swap which cards are shown while it's invisible, then fade in.
+  const [filterKey, setFilterKey] = useState("*"); // drives card visibility (updates after fade)
+  const [activeKey, setActiveKey] = useState("*"); // drives the active pill (updates instantly)
+  const [isFading, setIsFading] = useState(false);
 
-     // Trigger the zoom-out animation before filtering
-     const items = document.querySelectorAll('.filter-item');
-     items.forEach(item => {
-       if (!item.classList.contains(key)) {
-         item.classList.add('is-hidden');
-       } else {
-         item.classList.remove('is-hidden');
-       }
-     });
+  const handleFilterKeyChange = (key) => {
+    if (key === activeKey || isFading) return; // ignore re-clicks / mid-animation
+    setActiveKey(key); // highlight the clicked tab immediately
+    setIsFading(true); // zoom the cards out (CSS scale + opacity)
+    setTimeout(() => {
+      setFilterKey(key); // swap the visible cards while fully transparent
+      // Zoom the new set back in only after the new layout has been painted.
+      requestAnimationFrame(() => setIsFading(false));
+    }, 200);
   };
+
+  // True when a card of this category should be visible for the current filter.
+  const isVisible = (category) => filterKey === "*" || filterKey === category;
   // popup
   const [video, setVideo] = useState(false);
   const [videoContent, setVideoContent] = useState({ name: "", src: "" });
@@ -298,6 +275,45 @@ const Portfolio = () => {
   console.log("modal", modal);
 
   const [showModal, setShowModal] = useState(false);
+
+  // Total photo count behind each card's modal (sum of its project galleries),
+  // shown in the hover "View Gallery" badge.
+  const galleryCounts = {
+    1: [RESIDENTIAL_1400_SQ_YDS, RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES, RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH, RESIDENTIAL_2000_SQ_YDS_MASTERPLAN].reduce((n, a) => n + (a?.length || 0), 0),
+    2: [INTERIOR_ALFIE_LIVING_KITCHEN, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED].reduce((n, a) => n + (a?.length || 0), 0),
+    3: [COMMERCIAL_CALIFORNIA_PIZZA, COMMERCIAL_CLASSROOM, COMMERCIAL_HARIS_OFFICE, WHATSAPP_UNKNOWN_FOLDER].reduce((n, a) => n + (a?.length || 0), 0),
+  };
+
+  // Subtle 3D tilt-toward-cursor on the portfolio cards (vanilla-tilt is already
+  // a project dependency). Loaded dynamically so it never runs during SSR.
+  useEffect(() => {
+    let nodes = [];
+    let cancelled = false;
+    import("vanilla-tilt").then(({ default: VanillaTilt }) => {
+      if (cancelled) return;
+      // Tilt the whole card (.list_inner). The clickable full-link overlay sits
+      // on top of the photo, so mouse moves must be caught on the shared parent.
+      nodes = Array.from(
+        document.querySelectorAll(
+          ".aali_tm_portfolio .portfolio_list .list_inner"
+        )
+      );
+      if (nodes.length) {
+        VanillaTilt.init(nodes, {
+          max: 8,
+          speed: 400,
+          perspective: 1000,
+          glare: false,
+          scale: 1.02,
+          gyroscope: false,
+        });
+      }
+    });
+    return () => {
+      cancelled = true;
+      nodes.forEach((n) => n.vanillaTilt && n.vanillaTilt.destroy());
+    };
+  }, []);
 
   const handleNavigate =() => {
     router.push("/portfolio")
@@ -349,33 +365,28 @@ const Portfolio = () => {
               {/* <span className="text-black-500">Selected works</span> */}
               <h3>CHECK OUR PORTFOLIO</h3>
             </div>
-            <div className="portfolio_filter" style={{display: 'none'}}>
-              {/* <ul>
-                <li>
-                  <a onClick={()=> handleFilterKeyChange("*")} className="current">
-                    All
-                  </a>
-                </li>
-                <li>
-                  <a className="current" onClick={()=>handleFilterKeyChange("residential")} style={{color:filterKey==="residential"?'#14b8a6':""}}>Residential</a>
-                </li>
-                <li>
-                  <a onClick={ ()=>handleFilterKeyChange("interior")}style={{color:filterKey==="interior"?'#14b8a6':""}}>Interior</a>
-                </li>
-                <li>
-                  <a onClick={()=>handleFilterKeyChange("commercial")}style={{color:filterKey==="commercial"?'#14b8a6':""}}>Commercial</a>
-                </li>
-                {/* <li>
-                  <a onClick={handleFilterKeyChange("image")}>Image</a>
-                </li>
-                <li>
-                  <a onClick={handleFilterKeyChange("detail")}>Detail</a>
-                </li>
-              </ul> */}
+            <div className="portfolio_filter">
+              <ul>
+                {[
+                  { key: "*", label: "All" },
+                  { key: "residential", label: "Residential" },
+                  { key: "interior", label: "Interior" },
+                  { key: "commercial", label: "Commercial" },
+                ].map((f) => (
+                  <li key={f.key}>
+                    <a
+                      className={activeKey === f.key ? "current" : ""}
+                      onClick={() => handleFilterKeyChange(f.key)}
+                    >
+                      {f.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="portfolio_list">
-              <ul className="gallery_zoom">
+              <ul className={`gallery_zoom${isFading ? " is-fading" : ""}`}>
             
               {/* {filteredItems.map((item, index) => (
                 <li key={index} className={`filter-item ${item.category}`}>
@@ -404,7 +415,7 @@ const Portfolio = () => {
               
                 </li>
               ))} */}
-                <li className="filter-item residential">
+                <li className={`filter-item residential${isVisible("residential") ? "" : " is-hidden"}`}>
                   <div className="list_inner">
                     {/* <div className="image">
                     
@@ -412,6 +423,13 @@ const Portfolio = () => {
                   <div className="portfolio_main_photos" >
                     <img src="Pictures/SAUDI_ARABIA_LIVING_ROOM_RENDERS/003.webp" alt="aali image" className="portfolio_main_photo_size" />
                     <div className="overlay" />
+                    <div className="gallery_badge" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="13" height="13" rx="2" />
+                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
+                      </svg>
+                      <span>View Gallery · {galleryCounts[1]} Photos</span>
+                    </div>
                     <div className="details">
                       <h3>Residential</h3>
                       <span>Saudi Arabia Residential</span>
@@ -608,7 +626,7 @@ const Portfolio = () => {
                     
                   </div>
                 </li> */}
-                <li className="filter-item interior">
+                <li className={`filter-item interior${isVisible("interior") ? "" : " is-hidden"}${activeKey === "*" ? " st-1" : ""}`}>
                   <div className="list_inner">
                     {/* <div className="image">
                       <video
@@ -622,6 +640,13 @@ const Portfolio = () => {
                   <div className="portfolio_main_photos" >
                     <img src="Pictures/CONF ROOM SGS RENDERS/09.webp" alt="aali image" className="portfolio_main_photo_size"   />
                     <div className="overlay" />
+                    <div className="gallery_badge" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="13" height="13" rx="2" />
+                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
+                      </svg>
+                      <span>View Gallery · {galleryCounts[2]} Photos</span>
+                    </div>
                     <div className="details">
                       <h3>Interior</h3>
                       <span>Ariel View Appartment</span>
@@ -764,7 +789,7 @@ const Portfolio = () => {
                       </div>
                     </ModalBox>
                   </div>
-                <li className="filter-item commercial">
+                <li className={`filter-item commercial${isVisible("commercial") ? "" : " is-hidden"}${activeKey === "*" ? " st-2" : ""}`}>
                   <div className="list_inner">
                     {/* <div className="image">
                       <video
@@ -780,6 +805,13 @@ const Portfolio = () => {
 
                     <img src="Pictures/AMIN LAKLHANI KITCHEN 1 RENDERS/002.webp" alt="aali image" className="portfolio_main_photo_size"  />
                     <div className="overlay" />
+                    <div className="gallery_badge" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="13" height="13" rx="2" />
+                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
+                      </svg>
+                      <span>View Gallery · {galleryCounts[3]} Photos</span>
+                    </div>
                     <div className="details">
                       <h3>Commercial</h3>
                       <span>Lavish Restaurant</span>

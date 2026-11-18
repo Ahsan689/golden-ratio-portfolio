@@ -15,8 +15,9 @@ const Blog = () => {
             data-text-align="center"
             data-color="dark"
           >
+            <span className="section_eyebrow">Our Work</span>
             <h3 style={{color:"#FEC101"}}>The Signature Collection</h3>
-           
+
           </div>
           <div className="news_list">
             <ul>

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 20px 20px 20px;
+  padding: 16px 20px 20px 20px; /* reduced top gap between the heading and the slider frame (was 50px) */
 }
 
  .carousel-wrapper {
@@ -11,9 +11,11 @@
   max-width: 1200px;
   perspective: 1000px;
   position: relative;
-  /* Keep height proportional to width using padding-bottom (16:9). This makes height fit width. */
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  margin-bottom: 150px;
+  /* Reserve the active slide's real height (90% width x 3/4 ratio x 1.06 scale
+     ~= 72%) so it no longer overflows into the space below — that lets the small
+     margin below control the gap to the dots directly. */
+  padding-bottom: 72%;
+  margin-bottom: 30px; /* reduced gap between the slider frame and the dots (was 150px) */
 } .carousel-slide {
   position: absolute;
   top: 50%;
@@ -47,6 +49,135 @@
   object-position: center;
   display: block;
   transition: opacity 0.4s ease;
+}
+
+/* ===== Tap/click-to-fullscreen viewer (lightbox) ===== */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000000; /* above the modal and its close button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.94);
+  cursor: zoom-out;
+  animation: fs-fade 0.2s ease;
+}
+@keyframes fs-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fsImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* show the whole image, no crop */
+  border-radius: 6px;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.fsClose {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.fsClose:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+.fsNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 64px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 40px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.fsNav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.fsPrev { left: 14px; }
+.fsNext { right: 14px; }
+.fsCounter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 768px) {
+  .fullscreen { padding: 0; }
+  .fsImage { border-radius: 0; }
+  .fsClose {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .fsNav {
+    width: 40px;
+    height: 54px;
+    font-size: 32px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .fsPrev { left: 6px; }
+  .fsNext { right: 6px; }
+}
+
+/* Image counter pill (e.g. "3 / 10") in the top-right of the frame. */
+.counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 40; /* above the active slide (z-index 30) */
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+  .counter {
+    top: 8px;
+    right: 8px;
+    font-size: 11px;
+    padding: 3px 9px;
+  }
 }
 
 /* Skeleton loader — shimmer placeholder shown until the image finishes loading */
@@ -86,6 +217,47 @@
   z-index: 30;
   transform: translate(-50%, -50%) scale(1.06);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+  cursor: zoom-in; /* signal the image can be opened fullscreen */
+}
+
+/* Expand affordance on the active image — tells users it opens fullscreen. */
+.expandHint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  pointer-events: none; /* clicks pass through to open fullscreen */
+  opacity: 0.92;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+/* Override the template's global svg rule (30px, fill:currentcolor) so the
+   icon stays small and is stroked, not filled. */
+.expandHint svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+}
+.slideActive:hover .expandHint {
+  background: #fec101; /* gold on hover, on-brand */
+  color: #1a1a1a;
+  transform: scale(1.06);
+}
+@media (max-width: 768px) {
+  .expandHint {
+    width: 32px;
+    height: 32px;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 
 /* Side slides - smaller, semi-transparent */
@@ -211,7 +383,7 @@
      spacing between heading <-> slider <-> next heading is kept consistent
      (~14px) via the margins below and the modal heading rules. */
   .carousel-container {
-    padding: 0 20px; /* was 50px 20px 20px — removes top/bottom dead space */
+    padding: 0 8px; /* slightly wider frame on mobile (was 0 20px) */
   }
 
   .carousel-wrapper {

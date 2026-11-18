@@ -181,8 +181,13 @@ img.mfp-img {
 
 @media (max-width: 768px) {
   .aali_tm_modalbox .box_inner {
-    width: 80% !important;
+    width: 94% !important; /* was 80% — let the slider image use the screen */
     border-radius: 20px;
+  }
+  /* Trim the inner side padding so the image gets more width (was 10px/20px). */
+  .aali_tm_modalbox .description_wrap {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -231,9 +236,8 @@ img.mfp-img {
     width: 100%;            /* was 80% — use full width */
   }
   .aali_tm_news .news_list ul li .image {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 20px;
+    width: 90%;            /* slightly smaller than full width on phones */
+    margin: 0 auto 20px;   /* center the narrower image */
   }
 }
 
@@ -315,6 +319,125 @@ img.mfp-img {
 /* Portfolio ("Check Our Portfolio") — replace bright blue with on-brand warm charcoal */
 .aali_tm_skills {
   background-color: #242018;
+  padding-top: 85px;    /* more breathing room above the portfolio (was 50px) */
+  padding-bottom: 85px; /* and below */
+  position: relative;   /* host the gold divider at its top seam */
+}
+@media (max-width: 768px) {
+  .aali_tm_skills {
+    padding-top: 45px;    /* was 10px */
+    padding-bottom: 45px; /* was 30px */
+  }
+}
+
+/* ===== Separate Signature Collection (Blog) from About ===== */
+
+/* About gets a distinct darker warm band; Blog stays on the lighter body grey,
+   so the two adjacent sections read as clearly separate. A soft radial gold
+   glow adds atmosphere behind its content. */
+.aali_tm_about {
+  background-color: #242018;
+  background-image: radial-gradient(
+    circle at 22% 32%,
+    rgba(254, 193, 1, 0.1),
+    rgba(254, 193, 1, 0) 55%
+  );
+  position: relative;
+}
+
+/* Gold gradient divider at the top seam of About and of the Portfolio band. */
+.aali_tm_about::before,
+.aali_tm_skills::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(620px, 82%);
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(254, 193, 1, 0.9),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Blog "Signature Collection" header — small eyebrow + gold underline accent,
+   to match the editorial treatment the About section already has. */
+.aali_tm_news .section_eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(254, 193, 1, 0.85);
+}
+.aali_tm_news .aali_tm_main_title h3 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 16px;
+}
+.aali_tm_news .aali_tm_main_title h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: #fec101;
+}
+
+/* ===== Editorial section-number watermarks (01..06) =====
+   Deliberately kept as plain, very faint ::after marks with NO z-index and no
+   content lifting: several of these sections (Blog, Portfolio, Service) contain
+   fixed-position modals, and creating a stacking context here would break them.
+   At this low opacity, sitting slightly over the content reads as a watermark. */
+.aali_tm_news,
+.aali_tm_about,
+.aali_tm_skills,
+.aali_tm_service,
+.aali_tm_testimonials,
+.aali_tm_contact {
+  position: relative; /* anchor the ::after; no z-index, so no stacking context */
+}
+.aali_tm_news::after,
+.aali_tm_about::after,
+.aali_tm_skills::after,
+.aali_tm_service::after,
+.aali_tm_testimonials::after,
+.aali_tm_contact::after {
+  position: absolute;
+  top: 24px;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 800;
+  font-size: 200px;
+  line-height: 1;
+  color: rgba(254, 193, 1, 0.07); /* faint gold */
+  pointer-events: none;
+  user-select: none;
+}
+.aali_tm_news::after        { content: "01"; left: 4%;  color: rgba(255, 255, 255, 0.05); }
+.aali_tm_about::after       { content: "02"; right: 5%; }
+.aali_tm_skills::after      { content: "03"; left: 4%;  }
+.aali_tm_service::after     { content: "04"; right: 5%; }
+.aali_tm_testimonials::after { content: "05"; left: 4%; }
+.aali_tm_contact::after     { content: "06"; right: 5%; }
+@media (max-width: 768px) {
+  .aali_tm_news::after,
+  .aali_tm_about::after,
+  .aali_tm_skills::after,
+  .aali_tm_service::after,
+  .aali_tm_testimonials::after,
+  .aali_tm_contact::after {
+    font-size: 100px;
+    top: 14px;
+  }
 }
 
 /* Testimonial band — replace mustard with on-brand warm charcoal */
@@ -377,6 +500,151 @@ img.mfp-img {
   width: 44px;
 }
 
+/* Make the whole portfolio image open the modal.
+   The full-link already stretches over the entire image; lift it above the
+   overlay (z-index 5) so every click lands on it, and make the decorative
+   gradient + title non-interactive so they can never swallow a click. */
+.aali_tm_portfolio .portfolio_list .list_inner .aali_tm_full_link {
+  z-index: 6;
+  cursor: pointer;
+}
+.aali_tm_portfolio .portfolio_list .list_inner {
+  cursor: pointer; /* whole card reads as clickable */
+}
+.aali_tm_portfolio .portfolio_list .list_inner .overlay,
+.aali_tm_portfolio .portfolio_list .list_inner .details {
+  pointer-events: none; /* decorative only — let clicks pass to the full-link */
+}
+
+/* Hover "View Gallery · N Photos" badge — signals the card opens a gallery. */
+.aali_tm_portfolio .portfolio_list .list_inner .gallery_badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;                 /* above the image, below the full-link (6) */
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  pointer-events: none;       /* clicks pass through to the full-link */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.aali_tm_portfolio .portfolio_list .list_inner .gallery_badge svg {
+  color: #FEC101;             /* gold icon to match the section accent */
+  flex-shrink: 0;
+}
+.aali_tm_portfolio .portfolio_list .list_inner:hover .gallery_badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Touch devices have no hover — keep the badge visible so the affordance shows. */
+@media (hover: none) {
+  .aali_tm_portfolio .portfolio_list .list_inner .gallery_badge {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Smaller badge on mobile so it fits the smaller cards. */
+@media (max-width: 768px) {
+  .aali_tm_portfolio .portfolio_list .list_inner .gallery_badge {
+    top: 10px;
+    right: 10px;
+    gap: 5px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .aali_tm_portfolio .portfolio_list .list_inner .gallery_badge svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Taller portfolio cards on mobile (template caps them at 180px). */
+@media (max-width: 768px) {
+  .aali_tm_portfolio .portfolio_main_photos {
+    height: 260px !important;
+  }
+}
+
+/* ===== Portfolio category filter bar — pill buttons, gold active state ===== */
+.aali_tm_portfolio .portfolio_filter {
+  padding: 6px 0 26px;
+}
+.aali_tm_portfolio .portfolio_filter ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.aali_tm_portfolio .portfolio_filter ul li {
+  margin: 0 !important; /* replace template's 45px/30px spacing — gap handles it */
+  display: inline-flex;
+}
+.aali_tm_portfolio .portfolio_filter ul li a {
+  cursor: pointer;
+  display: inline-block;
+  padding: 7px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #cfcfcf;
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+.aali_tm_portfolio .portfolio_filter ul li a:hover {
+  color: #fff;
+  border-color: rgba(254, 193, 1, 0.6);
+  transform: translateY(-2px);
+}
+.aali_tm_portfolio .portfolio_filter ul li a:active {
+  transform: translateY(0) scale(0.95); /* press-down feedback */
+}
+.aali_tm_portfolio .portfolio_filter ul li a.current {
+  background: #fec101;
+  border-color: #fec101;
+  color: #1a1a1a;
+  box-shadow: 0 6px 18px rgba(254, 193, 1, 0.35); /* gold glow on the active tab */
+}
+
+/* Cards hidden by the active category filter are removed from the grid while
+   it is zoomed out, so nothing slides. */
+.aali_tm_portfolio .portfolio_list .filter-item.is-hidden {
+  display: none;
+}
+
+/* Zoom-out / zoom-in filter animation. Each card scales from its own centre,
+   so there is no sliding — the grid relayouts only while cards are invisible. */
+.aali_tm_portfolio .gallery_zoom .filter-item {
+  /* Zoom-IN: a lively "pop" with a slight overshoot (back-out easing). */
+  transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+/* Staggered cascade so the cards pop in one after another (only in All view). */
+.aali_tm_portfolio .gallery_zoom .filter-item.st-1 { transition-delay: 0.07s; }
+.aali_tm_portfolio .gallery_zoom .filter-item.st-2 { transition-delay: 0.14s; }
+/* Zoom-OUT: snappy and synchronized (shrink + slight drop), no stagger. Placed
+   after the stagger rules so its reset of transition-delay wins. */
+.aali_tm_portfolio .gallery_zoom.is-fading .filter-item {
+  opacity: 0;
+  transform: scale(0.82) translateY(14px);
+  transition: opacity 0.18s ease, transform 0.22s ease;
+}
+
 /* Modal: stop scroll chaining from reaching the background page */
 .aali_tm_modalbox .description_wrap {
   overscroll-behavior: contain;
@@ -395,6 +663,7 @@ img.mfp-img {
   transform: translate(-50%, 20px) scale(0.95);
   margin-top: 0;            /* neutralize template's margin-top animation */
   visibility: inherit;      /* follow the overlay's visibility, not a fixed hidden */
+  border-radius: 12px;      /* slightly rounded modal corners */
   transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
               transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -446,4 +715,23 @@ img.mfp-img {
     margin-top: 12px !important;    /* gap from the previous slider's dots */
     margin-bottom: 12px !important; /* gap from the heading to its own slider */
   }
+  /* Modal section headings read large on mobile (20px uppercase Rajdhani on
+     long titles) — scale them down and tighten the line height. */
+  .aali_tm_modalbox .service_popup_informations .main_title h3 {
+    font-size: 16px !important;
+    line-height: 1.25;
+  }
+}
+
+/* Smaller phones: trim the modal heading a touch more. */
+@media (max-width: 480px) {
+  .aali_tm_modalbox .service_popup_informations .main_title h3 {
+    font-size: 15px !important;
+  }
+}
+
+/* Desktop: the template gives the modal heading a 105px bottom margin, which
+   leaves a huge gap before the slider. Tighten it (mobile is handled above). */
+.aali_tm_modalbox .service_popup_informations .main_title {
+  margin-bottom: 10px;
 }
