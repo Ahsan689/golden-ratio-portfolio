@@ -184,11 +184,8 @@ img.mfp-img {
     width: 94% !important; /* was 80% — let the slider image use the screen */
     border-radius: 20px;
   }
-  /* Trim side padding (more image width), reduce the gap above the title, and
-     add breathing room below the slider dots (template was 63px top / 0 bottom). */
+  /* Trim the inner side padding so the image gets more width (was 10px/20px). */
   .aali_tm_modalbox .description_wrap {
-    padding-top: 38px;
-    padding-bottom: 22px;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -717,7 +714,6 @@ img.mfp-img {
   .aali_tm_modalbox .service_popup_informations .main_title {
     margin-top: 12px !important;    /* gap from the previous slider's dots */
     margin-bottom: 12px !important; /* gap from the heading to its own slider */
-    padding-left: 8px;             /* minor space to the left of the title */
   }
   /* Modal section headings read large on mobile (20px uppercase Rajdhani on
      long titles) — scale them down and tighten the line height. */
@@ -731,28 +727,6 @@ img.mfp-img {
 @media (max-width: 480px) {
   .aali_tm_modalbox .service_popup_informations .main_title h3 {
     font-size: 15px !important;
-  }
-}
-
-/* Mobile: size the modal to its content and center it vertically, instead of
-   the fixed tall panel (top:70/bottom:70) that left the short single-project
-   content stuck at the top. Transforms are re-centered to match. */
-@media (max-width: 768px) {
-  .aali_tm_modalbox .box_inner {
-    top: 50%;
-    bottom: auto;
-    height: auto;
-    /* closed/base state: centered + the enter offset + scale */
-    transform: translate(-50%, calc(-50% + 18px)) scale(0.96);
-  }
-  .aali_tm_modalbox.is-open .box_inner {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  /* If a project ever has enough content to exceed the screen, scroll inside. */
-  .aali_tm_modalbox .description_wrap {
-    max-height: calc(100vh - 24px);
-    max-height: calc(100dvh - 24px);
-    overflow-y: auto;
   }
 }
 

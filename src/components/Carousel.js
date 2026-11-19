@@ -162,14 +162,9 @@ const Carousel = ({images, autoPlayInterval = 3000}) => {
     }
   };
 
-  const getSlideClass = (index) => {
-    const diff = (index - currentIndex + images.length) % images.length;
-    if (diff === 0) return styles.slideActive;
-    // diff === 1 is the next slide (right), diff === images.length -1 is the previous (left)
-    if (diff === 1) return `${styles.side} ${styles['side-right']}`;
-    if (diff === images.length - 1) return `${styles.side} ${styles['side-left']}`;
-    return styles.hidden;
-  };
+  // Crossfade: the active slide is shown, every other slide is faded out.
+  const getSlideClass = (index) =>
+    index === currentIndex ? styles.slideActive : styles.hidden;
 
   return (
     <div

@@ -6,46 +6,31 @@
   padding: 16px 20px 20px 20px; /* reduced top gap between the heading and the slider frame (was 50px) */
 }
 
- .carousel-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  perspective: 1000px;
+/* Crossfade: one fixed frame; all slides are stacked and only the active one
+   is opaque, so changing slide dissolves between images. */
+.carousel-wrapper {
   position: relative;
-  /* Reserve the active slide's real height (90% width x 3/4 ratio x 1.06 scale
-     ~= 72%) so it no longer overflows into the space below — that lets the small
-     margin below control the gap to the dots directly. */
-  padding-bottom: 72%;
-  margin-bottom: 30px; /* reduced gap between the slider frame and the dots (was 150px) */
-} .carousel-slide {
-  position: absolute;
-  top: 50%;
-  left: 50%; /* every slide shares one anchor; position is done with transforms */
-  width: 90%; /* single base size for ALL slides (the active width) */
-  aspect-ratio: 4 / 3; /* uniform 4:3 frame for every slide regardless of source ratio */
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 4 / 3; /* uniform frame */
   overflow: hidden;
-  border-radius: 10px;
-  /* Only transform + opacity + box-shadow animate — all three are compositor
-     (GPU) properties, so no layout reflow happens on any frame. This is what
-     makes the movement buttery vs. animating width/left/right. */
-  transition:
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  display: flex;
-  align-items: flex-end;
-  cursor: pointer;
-  /* Default/resting pose = a small centered slide (used by .hidden too). */
-  transform: translate(-50%, -50%) scale(0.29);
-  /* GPU hints: promote each slide to its own layer and keep 3D transforms crisp. */
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+  border-radius: 12px;
+  margin-bottom: 26px; /* gap to the dots */
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
 }
-
+.carousel-slide {
+  position: absolute;
+  inset: 0; /* every slide stacked, full-size */
+  overflow: hidden;
+  cursor: zoom-in; /* opens fullscreen on click */
+  opacity: 0; /* hidden by default; the active one fades in */
+  transition: opacity 0.7s ease;
+  will-change: opacity;
+}
 .carousel-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fill the 4:3 frame, center-crop any overflow — no distortion */
+  object-fit: cover;
   object-position: center;
   display: block;
   transition: opacity 0.4s ease;
@@ -212,12 +197,10 @@
   }
 }
 
-/* Active slide - center, larger. Pure transform scale from the shared base. */
+/* Active slide — fully visible, on top. */
 .slideActive {
-  z-index: 30;
-  transform: translate(-50%, -50%) scale(1.06);
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
-  cursor: zoom-in; /* signal the image can be opened fullscreen */
+  opacity: 1;
+  z-index: 2;
 }
 
 /* Expand affordance on the active image — tells users it opens fullscreen. */
@@ -260,23 +243,7 @@
   }
 }
 
-/* Side slides - smaller, semi-transparent */
-.side {
-  z-index: 8;
-  opacity: 0.78; /* slightly more visible */
-}
-
-/* Left/right side poses — translateX shifts the slide into the side zone and
-   scale shrinks it, matching the old width/left layout but with zero reflow. */
-.side-left {
-  transform: translate(-85%, -50%) scale(0.29) rotateY(12deg);
-}
-
-.side-right {
-  transform: translate(-15%, -50%) scale(0.29) rotateY(-12deg);
-}
-
-/* Hidden slides — invisible, keep the resting centered pose from the base rule */
+/* Inactive slides — faded out, underneath. */
 .hidden {
   opacity: 0;
   z-index: 1;
@@ -377,50 +344,18 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  /* Mobile: single image focus layout */
-
-  /* Tighten the vertical rhythm: no bulky container padding on mobile,
-     spacing between heading <-> slider <-> next heading is kept consistent
-     (~14px) via the margins below and the modal heading rules. */
   .carousel-container {
     padding: 0 8px; /* slightly wider frame on mobile (was 0 20px) */
   }
-
   .carousel-wrapper {
-    /* Match the 4:3 active slide so the image frame is fully contained
-       instead of spilling out and overlapping the dots/heading. */
-    padding-bottom: 75%; /* 4:3 ratio (3/4) */
-    margin-bottom: 12px; /* gap between image and dots */
-    perspective: none; /* Disable 3D perspective on mobile */
+    margin-bottom: 14px; /* gap between image and dots */
+    border-radius: 10px;
   }
-
-  .carousel-slide {
-    display: none !important; /* Hide all slides by default on mobile */
-  }
-
-  /* Only show the active slide */
-  .slideActive {
-    display: flex !important;
-    width: 100% !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    box-shadow: none;
-    z-index: 10;
-  }
-
-  /* Hide side slides on mobile */
-  .side {
-    display: none !important;
-  }
-
   .carousel-nav {
     font-size: 30px;
   }
-
   .carousel-controls {
     gap: 20px;
-    margin-bottom: 0; /* was 40px — removes dead space below the dots */
+    margin-bottom: 0; /* removes dead space below the dots */
   }
 }
