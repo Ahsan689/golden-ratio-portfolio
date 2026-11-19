@@ -232,71 +232,64 @@ const WHATSAPP_UNKNOWN_FOLDER =[
   'Pictures/WhatsApp Unknown 2026-01-01/WhatsApp Image 2026-01-01 at 2.05.55 PM.webp',
 ]
 
+// Display label per category key.
+const CATEGORY_LABELS = {
+  residential: "Residential",
+  interior: "Interior",
+  commercial: "Commercial",
+};
 
+// Every project shown in the portfolio grid. The cover defaults to the first
+// image of each gallery; change `cover` to feature a different one.
+const PROJECTS = [
+  { id: "res-1400", category: "residential", title: "1400 Sq Yds Residence", images: RESIDENTIAL_1400_SQ_YDS },
+  { id: "res-2000-bbq", category: "residential", title: "2000 Sq Yds — Indoor BBQ & Games", images: RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES },
+  { id: "res-2000-bath", category: "residential", title: "2000 Sq Yds — Parents' Bath", images: RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH },
+  { id: "res-2000-master", category: "residential", title: "2000 Sq Yds — Masterplan", images: RESIDENTIAL_2000_SQ_YDS_MASTERPLAN },
+  { id: "int-alfie", category: "interior", title: "Alfie Living & Kitchen", images: INTERIOR_ALFIE_LIVING_KITCHEN },
+  { id: "int-ayk-drawing", category: "interior", title: "240 Sq Yds — Drawing Room", images: INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN },
+  { id: "int-ayk-kitchen", category: "interior", title: "240 Sq Yds — Kitchen & Living", images: INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING },
+  { id: "int-ayk-master", category: "interior", title: "240 Sq Yds — Master Bedroom", images: INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED },
+  { id: "com-pizza", category: "commercial", title: "California Pizza", images: COMMERCIAL_CALIFORNIA_PIZZA },
+  { id: "com-classroom", category: "commercial", title: "Classroom", images: COMMERCIAL_CLASSROOM },
+  { id: "com-office", category: "commercial", title: "Haris Office", images: COMMERCIAL_HARIS_OFFICE },
+].map((p) => ({ ...p, cover: p.images[0] }));
+
+
+
+const FILTERS = [
+  { key: "*", label: "All" },
+  { key: "residential", label: "Residential" },
+  { key: "interior", label: "Interior" },
+  { key: "commercial", label: "Commercial" },
+];
 
 const Portfolio = () => {
-
-  const router = useRouter()
-  console.log("router",router);
-  console.log("Link",Link);
-  // Category filtering via a clean cross-fade (no sliding reflow): fade the
-  // grid out, swap which cards are shown while it's invisible, then fade in.
-  const [filterKey, setFilterKey] = useState("*"); // drives card visibility (updates after fade)
-  const [activeKey, setActiveKey] = useState("*"); // drives the active pill (updates instantly)
+  const [filterKey, setFilterKey] = useState("*"); // drives card visibility (after fade)
+  const [activeKey, setActiveKey] = useState("*"); // drives active pill (instant)
   const [isFading, setIsFading] = useState(false);
+  const [activeProject, setActiveProject] = useState(null); // open project modal
 
   const handleFilterKeyChange = (key) => {
-    if (key === activeKey || isFading) return; // ignore re-clicks / mid-animation
-    setActiveKey(key); // highlight the clicked tab immediately
-    setIsFading(true); // zoom the cards out (CSS scale + opacity)
+    if (key === activeKey || isFading) return;
+    setActiveKey(key);
+    setIsFading(true);
     setTimeout(() => {
-      setFilterKey(key); // swap the visible cards while fully transparent
-      // Zoom the new set back in only after the new layout has been painted.
+      setFilterKey(key);
       requestAnimationFrame(() => setIsFading(false));
     }, 200);
   };
 
-  // True when a card of this category should be visible for the current filter.
   const isVisible = (category) => filterKey === "*" || filterKey === category;
-  // popup
-  const [video, setVideo] = useState(false);
-  const [videoContent, setVideoContent] = useState({ name: "", src: "" });
-  const showPopup = (name, src) => {
-    setVideo(true);
-    setVideoContent({ name, src });
-  };
-  // Model Box
-  const [modal, setModal] = useState(0);
-  const hidden = (value) => {
-    console.log(value, "hidden....");
-    value === modal ? "" : "news_hidden_details";
-  };
 
-  console.log("modal", modal);
-
-  const [showModal, setShowModal] = useState(false);
-
-  // Total photo count behind each card's modal (sum of its project galleries),
-  // shown in the hover "View Gallery" badge.
-  const galleryCounts = {
-    1: [RESIDENTIAL_1400_SQ_YDS, RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES, RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH, RESIDENTIAL_2000_SQ_YDS_MASTERPLAN].reduce((n, a) => n + (a?.length || 0), 0),
-    2: [INTERIOR_ALFIE_LIVING_KITCHEN, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING, INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED].reduce((n, a) => n + (a?.length || 0), 0),
-    3: [COMMERCIAL_CALIFORNIA_PIZZA, COMMERCIAL_CLASSROOM, COMMERCIAL_HARIS_OFFICE, WHATSAPP_UNKNOWN_FOLDER].reduce((n, a) => n + (a?.length || 0), 0),
-  };
-
-  // Subtle 3D tilt-toward-cursor on the portfolio cards (vanilla-tilt is already
-  // a project dependency). Loaded dynamically so it never runs during SSR.
+  // Subtle 3D tilt on the project cards (loaded dynamically to avoid SSR).
   useEffect(() => {
     let nodes = [];
     let cancelled = false;
     import("vanilla-tilt").then(({ default: VanillaTilt }) => {
       if (cancelled) return;
-      // Tilt the whole card (.list_inner). The clickable full-link overlay sits
-      // on top of the photo, so mouse moves must be caught on the shared parent.
       nodes = Array.from(
-        document.querySelectorAll(
-          ".aali_tm_portfolio .portfolio_list .list_inner"
-        )
+        document.querySelectorAll(".aali_tm_portfolio .portfolio_list .list_inner")
       );
       if (nodes.length) {
         VanillaTilt.init(nodes, {
@@ -315,42 +308,13 @@ const Portfolio = () => {
     };
   }, []);
 
-  const handleNavigate =() => {
-    router.push("/portfolio")
-  }
+  // Stagger delay among the currently-visible cards for the zoom-in cascade.
+  const visibleIds = PROJECTS.filter((p) => isVisible(p.category)).map((p) => p.id);
+  const delayOf = (id) => {
+    const i = visibleIds.indexOf(id);
+    return isFading || i < 0 ? "0s" : `${Math.min(i, 10) * 0.04}s`;
+  };
 
-  const portfolioItems = [
-    {
-      category: 'residential',
-      videoSrc: 'videos/RESIDENTIAL CARD BACK ANIMATION VIDEO.mp4',
-      title: 'Saudi Arabia Residential',
-    },
-    {
-      category: 'residential',
-      videoSrc: 'videos/RESIDENTIAL CARD BACK ANIMATION VIDEO.mp4',
-      title: 'Living Room Residential',
-    },
-    {
-      category: 'residential',
-      videoSrc: 'videos/RESIDENTIAL CARD BACK ANIMATION VIDEO.mp4',
-      title: 'Dining Area Residential',
-    },
-    {
-      category: 'interior',
-      videoSrc: 'videos/INTERIOR BACK CARD ANIMATION.mp4',
-      title: 'Ariel View Appartment',
-    },
-    {
-      category: 'commercial',
-      videoSrc: 'videos/INTERIOR CARD BACK ANIMATION VIDEO.mp4',
-      title: 'Lavish Restaurant',
-    },
-  ];
-
-  const filteredItems = portfolioItems.filter(item => item.category === filterKey);
-
-
-  // console.log("filterKey:",filterKey);
   return (
     <>
       <div className="aali_tm_skills" id="portfolio">
@@ -360,19 +324,14 @@ const Portfolio = () => {
               className="aali_tm_main_title"
               data-text-align="center"
               data-color="light"
-              style={{marginBottom: '30px'}}
+              style={{ marginBottom: "30px" }}
             >
-              {/* <span className="text-black-500">Selected works</span> */}
               <h3>CHECK OUR PORTFOLIO</h3>
             </div>
+
             <div className="portfolio_filter">
               <ul>
-                {[
-                  { key: "*", label: "All" },
-                  { key: "residential", label: "Residential" },
-                  { key: "interior", label: "Interior" },
-                  { key: "commercial", label: "Commercial" },
-                ].map((f) => (
+                {FILTERS.map((f) => (
                   <li key={f.key}>
                     <a
                       className={activeKey === f.key ? "current" : ""}
@@ -387,884 +346,71 @@ const Portfolio = () => {
 
             <div className="portfolio_list">
               <ul className={`gallery_zoom${isFading ? " is-fading" : ""}`}>
-            
-              {/* {filteredItems.map((item, index) => (
-                <li key={index} className={`filter-item ${item.category}`}>
-                  <div className="list_inner">
-                    <div className="image">
-                      <video
-                        src={item.videoSrc}
-                        style={{ width: '100%', height: '285px' }}
-                        autoPlay
-                        muted
-                        loop
-                      />
-                    </div>
-                    <div className="overlay" />
-                    <div className="details">
-                      <h3>{item.category.charAt(0).toUpperCase() + item.category.slice(1)}</h3>
-                      <span>{item.title}</span>
-                    </div>
-                    <a
-                      className="aali_tm_full_link"
-                      href="#"
-                      // onClick={() => setShowModal(true)}
-                      onClick={() => setModal(1)}
-                    />
-                  </div>
-              
-                </li>
-              ))} */}
-                <li className={`filter-item residential${isVisible("residential") ? "" : " is-hidden"}`}>
-                  <div className="list_inner">
-                    {/* <div className="image">
-                    
-                    </div> */}
-                  <div className="portfolio_main_photos" >
-                    <img src="Pictures/SAUDI_ARABIA_LIVING_ROOM_RENDERS/003.webp" alt="aali image" className="portfolio_main_photo_size" />
-                    <div className="overlay" />
-                    <div className="gallery_badge" aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="13" height="13" rx="2" />
-                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
-                      </svg>
-                      <span>View Gallery · {galleryCounts[1]} Photos</span>
-                    </div>
-                    <div className="details">
-                      <h3>Residential</h3>
-                      <span>Saudi Arabia Residential</span>
-                    </div>
-                  </div>
-                    {/* <img src="SAUDI_ARABIA_LIVING_ROOM_RENDERS/New_folder/003.png" width={200} height={200}/> */}
-
-                    <a
-                      className="aali_tm_full_link"
-                      // href="/portfolio"
-                      onClick={() => setModal(1)}
-
-                    />
-                  </div>
-                
-                </li>
-                <div className={modal === 1 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal} isOpen={modal === 1}>
-                      <div className="service_popup_informations">
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 1400 SQ YDS</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={RESIDENTIAL_1400_SQ_YDS} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                      
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                        
-                        </div> */}
-                      </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS INDOOR BAR BQ GAMES</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_INDOOR_BAR_B_Q_GAMES} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                        
-                        </div> */}
-                      </div>
-                      <div className="service_popup_informations">
-                        <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS PARENTS BATH</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_PARENTS_BATH} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                        
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>RESIDENTIAL 2000 SQ YDS MASTERPLAN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={RESIDENTIAL_2000_SQ_YDS_MASTERPLAN} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                    </ModalBox>
-                  </div>
-                {/* <li className="filter-item residential">
-                  <div className="list_inner">
-                    <div className="image">
-                      <video
-                        src="videos/RESIDENTIAL CARD BACK ANIMATION VIDEO.mp4"
-                        style={{ width: "100%", height: "285px" }}
-                        autoPlay
-                        muted
-                        loop
-                      />
-                    </div>
-                    <div className="overlay" />
-                    <div className="details">
-                      <h3>Residential</h3>
-                      <h6>Living Room Residential</h6>
-                    </div>
-                    <a
-                      className="aali_tm_full_link"
-                      href="#"
-                      onClick={() => setShowModal(true)}
-                    />
-
-                  
-                  </div>
-                </li> */}
-                {/* <li className="filter-item residential">
-                  <div className="list_inner">
-                    <div className="image">
-                      <video
-                        src="videos/RESIDENTIAL CARD BACK ANIMATION VIDEO.mp4"
-                        style={{ width: "100%", height: "285px" }}
-                        autoPlay
-                        muted
-                        loop
-                      />
-                    </div>
-                    <div className="overlay" />
-                    <div className="details">
-                      <h3>Residential</h3>
-                      <h6>Dining Area Residential</h6>
-                    </div>
-                    <a
-                      className="aali_tm_full_link"
-                      href="#"
-                      onClick={() => setShowModal(true)}
-                    />
-
-                    
-                  </div>
-                </li> */}
-                <li className={`filter-item interior${isVisible("interior") ? "" : " is-hidden"}${activeKey === "*" ? " st-1" : ""}`}>
-                  <div className="list_inner">
-                    {/* <div className="image">
-                      <video
-                        src="videos/INTERIOR BACK CARD ANIMATION.mp4"
-                        style={{ width: "100%", height: "285px" }}
-                        autoPlay
-                        muted
-                        loop
+                {PROJECTS.map((p) => (
+                  <li
+                    key={p.id}
+                    className={`filter-item ${p.category}${
+                      isVisible(p.category) ? "" : " is-hidden"
+                    }`}
+                    style={{ transitionDelay: delayOf(p.id) }}
+                  >
+                    <div className="list_inner">
+                      <div className="portfolio_main_photos">
+                        <img
+                          src={p.cover}
+                          alt={p.title}
+                          className="portfolio_main_photo_size"
                         />
-                        </div> */}
-                  <div className="portfolio_main_photos" >
-                    <img src="Pictures/CONF ROOM SGS RENDERS/09.webp" alt="aali image" className="portfolio_main_photo_size"   />
-                    <div className="overlay" />
-                    <div className="gallery_badge" aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="13" height="13" rx="2" />
-                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
-                      </svg>
-                      <span>View Gallery · {galleryCounts[2]} Photos</span>
-                    </div>
-                    <div className="details">
-                      <h3>Interior</h3>
-                      <span>Ariel View Appartment</span>
-                    </div>
-                  </div>
-                    <a
-                      className="aali_tm_full_link "
-                      // href="#"
-                      onClick={() => setModal(2)}
-                    />
-                  </div>
-                </li>
-                <div className={modal === 2 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal} isOpen={modal === 2}>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>INTERIOR ALFIE LIVING KITCHEN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
+                        <div className="overlay" />
+                        <div className="gallery_badge" aria-hidden="true">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect x="3" y="3" width="13" height="13" rx="2" />
+                            <path d="M8 21h11a2 2 0 0 0 2-2V8" />
+                          </svg>
+                          <span>View Gallery · {p.images.length} Photos</span>
                         </div>
-                        <Carousel images={INTERIOR_ALFIE_LIVING_KITCHEN} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        <div className="descriptions">
-                          {/* <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p> */}
-                        
+                        <div className="details">
+                          <h3>{CATEGORY_LABELS[p.category]}</h3>
+                          <span>{p.title}</span>
                         </div>
                       </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        <div className="descriptions">
-                          {/* <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p> */}
-                        
-                        </div>
-                      </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN KITCHEN LIVING</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_KITCHEN_LIVING} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        <div className="descriptions">
-                          {/* <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p> */}
-                      
-                        </div>
-                      </div>
-                      <div className="service_popup_informations">
-                          <div className="main_title">
-                          <h3>INTERIOR 240 SQ YDS AHMED YAR KHAN MASTERBED</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={INTERIOR_240_SQ_YDS_AHMED_YAR_KHAN_MASTERBED} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                      
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                    </ModalBox>
-                  </div>
-                <li className={`filter-item commercial${isVisible("commercial") ? "" : " is-hidden"}${activeKey === "*" ? " st-2" : ""}`}>
-                  <div className="list_inner">
-                    {/* <div className="image">
-                      <video
-                        src="videos/INTERIOR CARD BACK ANIMATION VIDEO.mp4"
-                        style={{ width: "100%", height: "285px" }}
-                        autoPlay
-                        muted
-                        loop
+                      <a
+                        className="aali_tm_full_link"
+                        onClick={() => setActiveProject(p)}
                       />
-
-                    </div> */}
-                <div className="portfolio_main_photos">
-
-                    <img src="Pictures/AMIN LAKLHANI KITCHEN 1 RENDERS/002.webp" alt="aali image" className="portfolio_main_photo_size"  />
-                    <div className="overlay" />
-                    <div className="gallery_badge" aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="13" height="13" rx="2" />
-                        <path d="M8 21h11a2 2 0 0 0 2-2V8" />
-                      </svg>
-                      <span>View Gallery · {galleryCounts[3]} Photos</span>
                     </div>
-                    <div className="details">
-                      <h3>Commercial</h3>
-                      <span>Lavish Restaurant</span>
-                    </div>
-                </div>
-                    <a
-                      className="aali_tm_full_link"
-                      // href="#"
-                      onClick={() => setModal(3)}
-                    />
-                  </div>
-                </li>
-                <div className={modal === 3 ? "" : "hidden_content"}>
-                    <ModalBox close={setModal} isOpen={modal === 3}>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>COMMERCIAL CALIFORNIA PIZZA</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={COMMERCIAL_CALIFORNIA_PIZZA} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        <div className="descriptions">
-                          {/* <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p> */}
-                        
-                        </div>
-                      </div>
-                     
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>COMMERCIAL CLASSROOM</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={COMMERCIAL_CLASSROOM} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>COMMERCIAL HARIS OFFICE</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={COMMERCIAL_HARIS_OFFICE} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                      <div className="service_popup_informations">
-                         <div className="main_title">
-                          <h3>COMMERCIAL HARIS OFFICE</h3>
-                          {/* <span className="price">
-                            Starts from <span>$49</span>
-                          </span> */}
-                        </div>
-                        <Carousel images={WHATSAPP_UNKNOWN_FOLDER} />
-                        {/* <div className="image">
-                          <img src="img/thumbs/4-2.jpg" alt="" />
-                          <div
-                            className="main"
-                            data-img-url="img/service/1.jpg"
-                          />
-                        </div> */}
-                       
-                        {/* <div className="descriptions">
-                          <p>
-                            Aali is a leading web design agency with an
-                            award-winning design team that creates innovative,
-                            effective websites that capture your brand, improve
-                            your conversion rates, and maximize your revenue to
-                            help grow your business and achieve your goals.
-                          </p>
-                          <p>
-                            In today’s digital world, your website is the first
-                            interaction consumers have with your business.{" "}
-                            {`That's`}
-                            why almost 95 percent of a user’s first impression
-                            relates to web design. It’s also why web design
-                            services can have an immense impact on your company’s
-                            bottom line.
-                          </p>
-                      
-                        </div> */}
-                      </div>
-                    </ModalBox>
-                  </div>
-
-                {/* <li className="filter-item detail">
-                  <div className="list_inner">
-                    <div className="image">
-                      <img src="img/thumbs/1-1.jpg" alt="aali image" />
-                      <div className="main" data-img-url="img/portfolio/4.jpg" />
-                    </div>
-                    <div className="overlay" />
-                    {text}
-                    <div className="details">
-                      <span>Detail</span>
-                      <h3>Hippie Sabotage</h3>
-                    </div>
-                    <a
-                      className="aali_tm_full_link portfolio_popup"
-                      href="#"
-                      onClick={() => setModal(1)}
-                    />
-                    <div className={modal === 1 ? "" : "hidden_content"}>
-                      <ModalBox close={setModal} isOpen={modal === 1}>
-                        <div className="popup_details">
-                          <div className="top_image">
-                            <img src="img/thumbs/4-2.jpg" alt="" />
-                            <div
-                              className="main"
-                              data-img-url="img/portfolio/4.jpg"
-                            ></div>
-                          </div>
-                          <div className="portfolio_main_title">
-                            <span>Detail</span>
-                            <h3>Hippie Sabotage</h3>
-                            <div></div>
-                          </div>
-                          <div className="main_details">
-                            <div className="textbox">
-                              <p>
-                                We live in a world where we need to move quickly
-                                and iterate on our ideas as flexibly as possible.
-                                Building mockups strikes the ideal balance ease of
-                                modification.
-                              </p>
-                              <p>
-                                Mockups are useful both for the creative phase of
-                                the project - for instance when {`you're`} trying
-                                to figure out your user flows or the proper visual
-                                hierarchy - and the production phase when they
-                                will represent the target product.
-                              </p>
-                            </div>
-                            <div className="detailbox">
-                              <ul>
-                                <li>
-                                  <span className="first">Client</span>
-                                  <span>Alvaro Morata</span>
-                                </li>
-                                <li>
-                                  <span className="first">Category</span>
-                                  <span>
-                                    <a href="#">Detail</a>
-                                  </span>
-                                </li>
-                                <li>
-                                  <span className="first">Date</span>
-                                  <span>March 07, 2021</span>
-                                </li>
-                                <li>
-                                  <span className="first">Share</span>
-                                  <ul className="share">
-                                    <li>
-                                      <a href="#">{fb}</a>
-                                    </li>
-                                    <li>
-                                      <a href="#">{twitter}</a>
-                                    </li>
-                                    <li>
-                                      <a href="#">{insta}</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="additional_images">
-                            <ul>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/1.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/2.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/3.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </ModalBox>
-                    </div>
-                  </div>
-                </li> */}
-                {/* <li className="filter-item image">
-                  <div className="list_inner">
-                    <div className="image">
-                      <img src="img/thumbs/1-1.jpg" alt="aali image" />
-                      <div className="main" data-img-url="img/portfolio/5.jpg" />
-                    </div>
-                    <div className="overlay" />
-                    {maximize}
-                    <div className="details">
-                      <span>Image</span>
-                      <h3>Mockup Camera</h3>
-                    </div>
-                    <a
-                      className="aali_tm_full_link zoom"
-                      href="#"
-                      onClick={() => showPopup("image", "img/portfolio/5.jpg")}
-                    />
-                  </div>
-                </li> */}
-                {/* <li className="filter-item detail">
-                  <div className="list_inner">
-                    <div className="image">
-                      <img src="img/thumbs/1-1.jpg" alt="aali image" />
-                      <div className="main" data-img-url="img/portfolio/6.jpg" />
-                    </div>
-                    <div className="overlay" />
-                    {text}
-                    <div className="details">
-                      <span>Detail</span>
-                      <h3>Good Present</h3>
-                    </div>
-                    <a
-                      className="aali_tm_full_link portfolio_popup"
-                      href="#"
-                      onClick={() => setModal(2)}
-                    />
-                    <div className={modal === 2 ? "" : "hidden_content"}>
-                      <ModalBox close={setModal} isOpen={modal === 2}>
-                        <div className="popup_details">
-                          <div className="top_image">
-                            <img src="img/thumbs/4-2.jpg" alt="" />
-                            <div
-                              className="main"
-                              data-img-url="img/portfolio/6.jpg"
-                            ></div>
-                          </div>
-                          <div className="portfolio_main_title">
-                            <span>Detail</span>
-                            <h3>Good Present</h3>
-                            <div></div>
-                          </div>
-                          <div className="main_details">
-                            <div className="textbox">
-                              <p>
-                                We live in a world where we need to move quickly
-                                and iterate on our ideas as flexibly as possible.
-                                Building mockups strikes the ideal balance ease of
-                                modification.
-                              </p>
-                              <p>
-                                Mockups are useful both for the creative phase of
-                                the project - for instance when {`you're`} trying
-                                to figure out your user flows or the proper visual
-                                hierarchy - and the production phase when they
-                                will represent the target product.
-                              </p>
-                            </div>
-                            <div className="detailbox">
-                              <ul>
-                                <li>
-                                  <span className="first">Client</span>
-                                  <span>Alvaro Morata</span>
-                                </li>
-                                <li>
-                                  <span className="first">Category</span>
-                                  <span>
-                                    <a href="#">Detail</a>
-                                  </span>
-                                </li>
-                                <li>
-                                  <span className="first">Date</span>
-                                  <span>March 07, 2021</span>
-                                </li>
-                                <li>
-                                  <span className="first">Share</span>
-                                  <ul className="share">
-                                    <li>
-                                      <a href="#">{fb}</a>
-                                    </li>
-                                    <li>
-                                      <a href="#">{twitter}</a>
-                                    </li>
-                                    <li>
-                                      <a href="#">{insta}</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="additional_images">
-                            <ul>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/1.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/2.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="list_inner">
-                                  <div className="my_image">
-                                    <img
-                                      src="img/thumbs/4-2.jpg"
-                                      alt="aali image"
-                                    />
-                                    <div
-                                      className="main"
-                                      data-img-url="img/portfolio/3.jpg"
-                                    />
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </ModalBox>
-                    </div>
-                  </div>
-                </li> */}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
-     
-
       </div>
-    
 
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <CloseButton onClose={() => setShowModal(false)}/>
-        <Carousel images={images} />
-      </Modal>
+      {/* Single-project modal: shows only the selected project's slider. */}
+      <ModalBox
+        close={() => setActiveProject(null)}
+        isOpen={!!activeProject}
+      >
+        {activeProject && (
+          <div className="service_popup_informations">
+            <div className="main_title">
+              <h3>{activeProject.title}</h3>
+            </div>
+            <Carousel key={activeProject.id} images={activeProject.images} />
+          </div>
+        )}
+      </ModalBox>
     </>
-    // <div className=" " id="">
-    //   {/* {video && <Popup close={setVideo} content={videoContent} />} */}
-    // </div>
   );
 };
 
