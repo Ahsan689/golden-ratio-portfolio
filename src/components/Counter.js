@@ -26,9 +26,9 @@ const Counter = () => {
                     </div>
                     <div className="text">
                       <h3>
-                        JavaScript
+                        Sq. Ft.
                         <br />
-                        Projects
+                        Designed
                       </h3>
                     </div>
                   </div>
@@ -45,9 +45,9 @@ const Counter = () => {
                     </div>
                     <div className="text">
                       <h3>
-                        Digital
+                        Projects
                         <br />
-                        Products
+                        Completed
                       </h3>
                     </div>
                   </div>

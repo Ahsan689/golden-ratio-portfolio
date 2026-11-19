@@ -184,8 +184,11 @@ img.mfp-img {
     width: 94% !important; /* was 80% — let the slider image use the screen */
     border-radius: 20px;
   }
-  /* Trim the inner side padding so the image gets more width (was 10px/20px). */
+  /* Trim side padding (more image width), reduce the gap at the top, and add
+     breathing room at the bottom (template was 63px top / 0 bottom). */
   .aali_tm_modalbox .description_wrap {
+    padding-top: 36px;
+    padding-bottom: 26px;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -231,10 +234,52 @@ img.mfp-img {
   background-color: #1c1c1c;
 }
 
-/* Taller hero on mobile: fill a set height and crop cleanly instead of shrinking */
+/* ===== Hero video — more cinematic / aesthetic ===== */
+/* Soft vignette + bottom scrim so the logo & tagline lift off the frame */
+.aali_tm_hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 100% at 50% 42%,
+      rgba(0, 0, 0, 0) 52%,
+      rgba(0, 0, 0, 0.28) 82%,
+      rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0) 32%);
+}
+/* Gentle fade-in + settle on load for a filmic entrance */
+.hero_video {
+  animation: heroReveal 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  will-change: transform, opacity;
+}
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero_video {
+    animation: none;
+  }
+}
+
+/* On phones we swap in a dedicated 9:16 portrait build (see Home.js <source
+   media>), so it can safely FILL the screen — cover only crops into the
+   blurred fill zones, never the logo/tagline. svh avoids the address-bar
+   jump that 100vh causes on mobile browsers. */
 @media (max-width: 768px) {
   .hero_video {
-    height: 100vh;        /* adjust this value to taste (e.g. 70vh, 90vh, 100vh) */
+    height: 100vh;        /* fallback for browsers without svh */
+    height: 100svh;       /* stable height, ignores the collapsing URL bar */
     object-fit: cover;
     object-position: center;
   }
@@ -286,6 +331,72 @@ img.mfp-img {
 .aali_tm_mobile_menu .dropdown.active .dropdown_inner ul li:nth-child(5) { transition-delay: 0.51s; }
 .aali_tm_mobile_menu .dropdown.active .dropdown_inner ul li:nth-child(6) { transition-delay: 0.60s; }
 .aali_tm_mobile_menu .dropdown.active .dropdown_inner ul li:nth-child(7) { transition-delay: 0.69s; }
+
+/* ===== Mobile navbar — cool dark "glass" theme (was bright white) ===== */
+/* Top bar */
+.aali_tm_mobile_menu .mobile_menu_inner {
+  background-color: rgba(18, 18, 20, 0.82);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+/* Dropdown panel */
+.aali_tm_mobile_menu .dropdown {
+  background-color: rgba(18, 18, 20, 0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+/* Each item: subtle divider + gold accent bar that slides in */
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li:last-child {
+  border-bottom: none;
+}
+/* tighter panel so the menu isn't so tall */
+.aali_tm_mobile_menu .dropdown .dropdown_inner {
+  padding: 10px 30px;
+}
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li a {
+  color: rgba(255, 255, 255, 0.78) !important;
+  position: relative;
+  width: 100%;
+  padding: 9px 0 9px 16px !important;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+/* gold accent bar on the left of each link */
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  transform-origin: center;
+  width: 3px;
+  height: 60%;
+  background-color: #fec101;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li a:hover,
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li.current > a {
+  color: #fec101 !important;
+  padding-left: 26px !important;
+}
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li a:hover::before,
+.aali_tm_mobile_menu .dropdown .dropdown_inner ul li.current > a::before {
+  transform: translateY(-50%) scaleY(1);
+}
+/* Hamburger / close icon → light so it reads on the dark bar */
+.aali_tm_mobile_menu .hamburger-inner,
+.aali_tm_mobile_menu .hamburger-inner:after,
+.aali_tm_mobile_menu .hamburger-inner:before {
+  background-color: #ffffff !important;
+}
 
 /* ===== Signature Collection — appealing, engaging boxes ===== */
 .aali_tm_news .news_list ul li .image {
@@ -463,6 +574,51 @@ img.mfp-img {
   background-color: #1c1c1c;
 }
 
+/* ===== Serif headings (elegant / editorial) =====
+   Applied only to heading elements — body text and the small sans labels
+   (eyebrows, badges, counters) stay as they are. */
+.aali_tm_hero .content .name,
+.aali_tm_main_title h3,
+.aali_tm_about .center h3,
+.aali_tm_service .service_list .title h3,
+.aali_tm_service .service_list .wrapper h3,
+.aali_tm_modalbox .service_popup_informations .main_title h3 {
+  font-family: "Playfair Display", serif;
+}
+
+/* ===== Services — gold line icons + hover polish ===== */
+/* Gold stroked line-icons (override the template's global svg fill/size). */
+.aali_tm_service .service_list .icon .service_glyph {
+  fill: none;
+  stroke: #fec101;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Card hover: gold ring + deeper shadow (lift is handled by the tilt effect). */
+.aali_tm_service .service_list ul li .list_inner {
+  transition: box-shadow 0.4s ease;
+}
+body.dark
+  .aali_tm_service
+  .service_list
+  ul
+  li:not(.simple):not(.text)
+  .list_inner:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(254, 193, 1, 0.55);
+}
+/* Title turns gold and the icon nudges up on hover. */
+.aali_tm_service .service_list .title h3 {
+  transition: color 0.3s ease;
+}
+.aali_tm_service .service_list .list_inner:hover .title h3 {
+  color: #fec101;
+}
+.aali_tm_service .service_list .list_inner:hover .service_glyph {
+  transform: scale(1.1);
+}
+
 /* ===== CHECK OUR PORTFOLIO — image hover animation ===== */
 .aali_tm_portfolio .portfolio_list ul li .list_inner {
   overflow: hidden;
@@ -591,73 +747,6 @@ img.mfp-img {
   }
 }
 
-/* ===== Portfolio category filter bar — pill buttons, gold active state ===== */
-.aali_tm_portfolio .portfolio_filter {
-  padding: 6px 0 26px;
-}
-.aali_tm_portfolio .portfolio_filter ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-.aali_tm_portfolio .portfolio_filter ul li {
-  margin: 0 !important; /* replace template's 45px/30px spacing — gap handles it */
-  display: inline-flex;
-}
-.aali_tm_portfolio .portfolio_filter ul li a {
-  cursor: pointer;
-  display: inline-block;
-  padding: 7px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #cfcfcf;
-  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease,
-    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
-}
-.aali_tm_portfolio .portfolio_filter ul li a:hover {
-  color: #fff;
-  border-color: rgba(254, 193, 1, 0.6);
-  transform: translateY(-2px);
-}
-.aali_tm_portfolio .portfolio_filter ul li a:active {
-  transform: translateY(0) scale(0.95); /* press-down feedback */
-}
-.aali_tm_portfolio .portfolio_filter ul li a.current {
-  background: #fec101;
-  border-color: #fec101;
-  color: #1a1a1a;
-  box-shadow: 0 6px 18px rgba(254, 193, 1, 0.35); /* gold glow on the active tab */
-}
-
-/* Cards hidden by the active category filter are removed from the grid while
-   it is zoomed out, so nothing slides. */
-.aali_tm_portfolio .portfolio_list .filter-item.is-hidden {
-  display: none;
-}
-
-/* Zoom-out / zoom-in filter animation. Each card scales from its own centre,
-   so there is no sliding — the grid relayouts only while cards are invisible. */
-.aali_tm_portfolio .gallery_zoom .filter-item {
-  /* Zoom-IN: a lively "pop" with a slight overshoot (back-out easing). */
-  transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: center center;
-  will-change: transform, opacity;
-}
-/* Staggered cascade so the cards pop in one after another (only in All view). */
-.aali_tm_portfolio .gallery_zoom .filter-item.st-1 { transition-delay: 0.07s; }
-.aali_tm_portfolio .gallery_zoom .filter-item.st-2 { transition-delay: 0.14s; }
-/* Zoom-OUT: snappy and synchronized (shrink + slight drop), no stagger. Placed
-   after the stagger rules so its reset of transition-delay wins. */
-.aali_tm_portfolio .gallery_zoom.is-fading .filter-item {
-  opacity: 0;
-  transform: scale(0.82) translateY(14px);
-  transition: opacity 0.18s ease, transform 0.22s ease;
-}
-
 /* Modal: stop scroll chaining from reaching the background page */
 .aali_tm_modalbox .description_wrap {
   overscroll-behavior: contain;
@@ -747,4 +836,21 @@ img.mfp-img {
    leaves a huge gap before the slider. Tighten it (mobile is handled above). */
 .aali_tm_modalbox .service_popup_informations .main_title {
   margin-bottom: 10px;
+}
+
+/* ===== Testimonials — smaller, tighter quote text on mobile ===== */
+@media (max-width: 768px) {
+  .aali_tm_testimonials ul li .text p {
+    font-size: 15px;      /* was 19px, with loose 1.6 line-height */
+    line-height: 1.45;
+  }
+  .aali_tm_testimonials ul li .text {
+    margin-bottom: 22px;  /* was 40px — less gap before the name */
+  }
+}
+@media (max-width: 480px) {
+  .aali_tm_testimonials ul li .text p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
 }

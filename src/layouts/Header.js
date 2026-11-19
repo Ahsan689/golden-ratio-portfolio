@@ -26,8 +26,12 @@ const Header = ({ dark }) => {
 
   const [activeLink, setActiveLink] = useState("#home");
 
-  const handleClick = (link) => {
+  const handleClick = (e, link) => {
+    e.preventDefault();
     setActiveLink(link);
+    document
+      .getElementById(link.replace("#", ""))
+      ?.scrollIntoView({ behavior: "smooth" });
   };
   
   return (
@@ -58,22 +62,22 @@ const Header = ({ dark }) => {
             <li
             >
               <a href="#home"  style={{color:activeLink === "#home" ? "#FEC101" : "white"}}
-              onClick={() => handleClick("#home")}><IoHomeOutline /></a>
+              onClick={(e) => handleClick(e, "#home")}><IoHomeOutline /></a>
             </li>
             <li
             >
               <a href="#about"  style={{color:activeLink === "#about" ? "#FEC101" : "white"}}
-              onClick={() => handleClick("#about")}><MdGroups /></a>
+              onClick={(e) => handleClick(e, "#about")}><MdGroups /></a>
             </li>
             <li
             >
               <a href="#portfolio" style={{color:activeLink === "#portfolio" ? "#FEC101" : "white"}}
-              onClick={() => handleClick("#portfolio")}><BsFolder2Open /></a>
+              onClick={(e) => handleClick(e, "#portfolio")}><BsFolder2Open /></a>
             </li>
             <li
             >
               <a href="#service"  style={{color:activeLink === "#service" ? "#FEC101" : "white"}}
-              onClick={() => handleClick("#service")}><MdMiscellaneousServices /></a>
+              onClick={(e) => handleClick(e, "#service")}><MdMiscellaneousServices /></a>
             </li>
               {/* <li>
                 <a href="#testimonial">Testimonial</a>
@@ -84,7 +88,7 @@ const Header = ({ dark }) => {
               <li
               >
                 <a href="#contact"  style={{color:activeLink === "#contact" ? "#FEC101" : "white"}}
-               onClick={() => handleClick("#contact")}><LuContact/></a>
+               onClick={(e) => handleClick(e, "#contact")}><LuContact/></a>
               </li>
             </ul>
           </div>

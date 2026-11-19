@@ -29,12 +29,6 @@ const Home = () => {
 //   }
 //   }, [])
 
-const replayVideo = () => {
-  const videoElement = document.getElementById("video");
-  if (videoElement) {
-      videoElement.play();
-  }
-}
   return (
     <div className="aali_tm_section " id="home">
       <div className="aali_tm_hero">
@@ -47,8 +41,15 @@ const replayVideo = () => {
         loop
         playsInline
         preload="auto"
-        onEnded={replayVideo}
+        poster="/videos/hero-poster.jpg"
       >
+        {/* Phones: lighter 9:16 portrait build (blurred fill, full frame, ~2 MB) */}
+        <source
+          src={"/videos/hero-mobile-portrait.mp4"}
+          type={"video/mp4"}
+          media="(max-width: 768px)"
+        />
+        {/* Desktop/tablet: full 1080p landscape */}
         <source
           src={"/videos/Main-Title-Page-Animation-With-Logos-UPDATED.mp4"}
           type={"video/mp4"}
