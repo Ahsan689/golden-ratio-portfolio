@@ -191,6 +191,19 @@ img.mfp-img {
   }
 }
 
+/* Desktop only: make the modal a little wider (laptops were 800px, large
+   screens 968px). Mobile/tablet (<=1040px) is untouched. */
+@media (min-width: 1041px) and (max-width: 1440px) {
+  .aali_tm_modalbox .box_inner {
+    width: 900px !important;
+  }
+}
+@media (min-width: 1441px) {
+  .aali_tm_modalbox .box_inner {
+    width: 1080px !important;
+  }
+}
+
 .aali_tm_modalbox .main_details .detailbox .share {
   top: 0px;
 }

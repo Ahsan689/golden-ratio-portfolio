@@ -239,25 +239,6 @@ const Portfolio = () => {
   const router = useRouter()
   console.log("router",router);
   console.log("Link",Link);
-  // Category filtering via a clean cross-fade (no sliding reflow): fade the
-  // grid out, swap which cards are shown while it's invisible, then fade in.
-  const [filterKey, setFilterKey] = useState("*"); // drives card visibility (updates after fade)
-  const [activeKey, setActiveKey] = useState("*"); // drives the active pill (updates instantly)
-  const [isFading, setIsFading] = useState(false);
-
-  const handleFilterKeyChange = (key) => {
-    if (key === activeKey || isFading) return; // ignore re-clicks / mid-animation
-    setActiveKey(key); // highlight the clicked tab immediately
-    setIsFading(true); // zoom the cards out (CSS scale + opacity)
-    setTimeout(() => {
-      setFilterKey(key); // swap the visible cards while fully transparent
-      // Zoom the new set back in only after the new layout has been painted.
-      requestAnimationFrame(() => setIsFading(false));
-    }, 200);
-  };
-
-  // True when a card of this category should be visible for the current filter.
-  const isVisible = (category) => filterKey === "*" || filterKey === category;
   // popup
   const [video, setVideo] = useState(false);
   const [videoContent, setVideoContent] = useState({ name: "", src: "" });
@@ -347,10 +328,6 @@ const Portfolio = () => {
     },
   ];
 
-  const filteredItems = portfolioItems.filter(item => item.category === filterKey);
-
-
-  // console.log("filterKey:",filterKey);
   return (
     <>
       <div className="aali_tm_skills" id="portfolio">
@@ -360,33 +337,13 @@ const Portfolio = () => {
               className="aali_tm_main_title"
               data-text-align="center"
               data-color="light"
-              style={{marginBottom: '30px'}}
+              style={{marginBottom: '60px'}}
             >
               {/* <span className="text-black-500">Selected works</span> */}
               <h3>CHECK OUR PORTFOLIO</h3>
             </div>
-            <div className="portfolio_filter">
-              <ul>
-                {[
-                  { key: "*", label: "All" },
-                  { key: "residential", label: "Residential" },
-                  { key: "interior", label: "Interior" },
-                  { key: "commercial", label: "Commercial" },
-                ].map((f) => (
-                  <li key={f.key}>
-                    <a
-                      className={activeKey === f.key ? "current" : ""}
-                      onClick={() => handleFilterKeyChange(f.key)}
-                    >
-                      {f.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             <div className="portfolio_list">
-              <ul className={`gallery_zoom${isFading ? " is-fading" : ""}`}>
+              <ul className="gallery_zoom">
             
               {/* {filteredItems.map((item, index) => (
                 <li key={index} className={`filter-item ${item.category}`}>
@@ -415,7 +372,7 @@ const Portfolio = () => {
               
                 </li>
               ))} */}
-                <li className={`filter-item residential${isVisible("residential") ? "" : " is-hidden"}`}>
+                <li className="filter-item residential">
                   <div className="list_inner">
                     {/* <div className="image">
                     
@@ -626,7 +583,7 @@ const Portfolio = () => {
                     
                   </div>
                 </li> */}
-                <li className={`filter-item interior${isVisible("interior") ? "" : " is-hidden"}${activeKey === "*" ? " st-1" : ""}`}>
+                <li className="filter-item interior">
                   <div className="list_inner">
                     {/* <div className="image">
                       <video
@@ -789,7 +746,7 @@ const Portfolio = () => {
                       </div>
                     </ModalBox>
                   </div>
-                <li className={`filter-item commercial${isVisible("commercial") ? "" : " is-hidden"}${activeKey === "*" ? " st-2" : ""}`}>
+                <li className="filter-item commercial">
                   <div className="list_inner">
                     {/* <div className="image">
                       <video
